@@ -33,6 +33,29 @@ TemplateMo 567 Nomad Force
 https://templatemo.com/tm-567-nomad-force
 
 -->
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyAJ-v10cFQ0qDr7r8NH5rsh5cnuAx8FJXo",
+    authDomain: "safe-spend.firebaseapp.com",
+    projectId: "safe-spend",
+    storageBucket: "safe-spend.appspot.com",
+    messagingSenderId: "315089001979",
+    appId: "1:315089001979:web:c10e376cdb32043f22bf5e",
+    measurementId: "G-KFXYMH1Y4Q"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 </head>
 
 <body style="font-family: 'Poppins', sans-serif;">
@@ -466,6 +489,44 @@ https://templatemo.com/tm-567-nomad-force
   <script src="js/magnific-popup-options.js"></script>
   <script src="js/scrollspy.min.js"></script>
   <script src="js/custom.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js')
+    .then(function(registration) {
+      console.log('Service worker registered:', registration);
+      firebase.messaging().useServiceWorker(registration);
+    })
+    .catch(function(error) {
+      console.log('Service worker registration failed:', error);
+    });
+  }
+  Notification.requestPermission().then(function(permission) {
+  if (permission === 'granted') {
+    console.log('Notification permission granted.');
+    firebase.messaging().getToken().then(function(token) {
+      console.log('Token:', token);
+      // Send the token to your server to associate it with the user
+    });
+  } else {
+    console.log('Notification permission denied.');
+  }
+});
+
+firebase.messaging().onMessage(function(payload) {
+  console.log('Message received:', payload);
+  var notificationTitle = payload.notification.title;
+  var notificationOptions = {
+    body: payload.notification.body,
+    icon: payload.notification.icon,
+    image: payload.notification.image,
+    click_action: payload.notification.click_action
+  };
+  navigator.serviceWorker.ready.then(function(registration) {
+    registration.showNotification(notificationTitle, notificationOptions);
+  });
+});
+
+  </script>
 
 </body>
 
