@@ -2,6 +2,7 @@
 if (!isset($_SESSION['user_name']))
     header("Location:../login.php");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,11 +16,13 @@ if (!isset($_SESSION['user_name']))
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="bootstrap/fonts/bootstrap-icons.css" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/navbar.css" type="text/css">
 
 
 
     <script type="text/javascript" src="bootstrap/js/jquery-3.6.1.min.js"></script>
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -78,7 +81,56 @@ if (!isset($_SESSION['user_name']))
 </head>
 
 <body>
+
+    <div id="menuHolder" style="font-family:'Poppins', sans-serif">
+        <div role="navigation" class="sticky-top border-bottom border-top" id="mainNavigation">
+            <div class="flexMain">
+                <div class="flex2">
+                    <button class="whiteLink siteLink" style="border-right:1px solid #eaeaea" onclick="menuToggle()"><i class="fas fa-bars me-2"></i> MENU</button>
+                </div>
+                <div class="flex3 text-center" id="siteBrand" style="font-family:'Poppins', sans-serif">
+                    Safe Spend
+                </div>
+
+                <div class="flex2 text-end d-block d-md-none">
+                </div>
+
+                <div class="flex2 text-end d-none d-md-block">
+
+                </div>
+            </div>
+        </div>
+
+        <div id="menuDrawer">
+            <div class="p-4 border-bottom">
+                <div class='row'>
+                    <div class="col">
+                    </div>
+                    <div>
+                        <div class="col text-end ">
+                            <i class="fas fa-times" role="btn" onclick="menuToggle()"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a href="budget-index.php" class="nav-menu-item"><i class="fas fa-home me-3"></i>Home</a>
+                <a href="transaction-index.php" class="nav-menu-item"><i class="fab fa-dollar-sign me-3"></i>Transaction History</a>
+                <a href="index.html" class="nav-menu-item"><i class="fab me-3"></i>Log out</a>
+                <!--
+                <a href="#" class="nav-menu-item"><i class="fas fa-search me-3"></i>Explore</a>
+                <a href="#" class="nav-menu-item"><i class="fas fa-wrench me-3"></i>Services</a>
+                <a href="#" class="nav-menu-item"><i class="fas fa-dollar-sign me-3"></i>Pricing</a>
+                <a href="#" class="nav-menu-item"><i class="fas fa-file-alt me-3"></i>Blog</a>
+                <a href="#" class="nav-menu-item"><i class="fas fa-building me-3"></i>About Us</a>
+                -->
+            </div>
+        </div>
+    </div>
+
     <div class="container">
+
+        <!--
         <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
             Menu
         </a>
@@ -110,7 +162,9 @@ if (!isset($_SESSION['user_name']))
                     <div><a href="register.php"><span style="color: red; font-size: 20; ">Log Out</span></a></div>
                 </div>
             </div>
-        </div>
+        </div
+    -->
+        
         <div class="card">
 
             <div class="container " style="width:100%; background-color:#FFF8E7; border:solid #FFF8E7; border-radius:40px;">
@@ -289,6 +343,21 @@ if (!isset($_SESSION['user_name']))
         </div>
 
     </div>
+
+    <script>
+        var menuHolder = document.getElementById('menuHolder')
+        var siteBrand = document.getElementById('siteBrand')
+
+        function menuToggle() {
+            if (menuHolder.className === "drawMenu") menuHolder.className = ""
+            else menuHolder.className = "drawMenu"
+        }
+        if (window.innerWidth < 426) siteBrand.innerHTML = "MAS"
+        window.onresize = function() {
+            if (window.innerWidth < 420) siteBrand.innerHTML = "MAS"
+            else siteBrand.innerHTML = "MY AWESOME WEBSITE"
+        }
+    </script>
 </body>
 
 </html>

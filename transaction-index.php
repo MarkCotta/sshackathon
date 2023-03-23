@@ -15,7 +15,7 @@ if (!isset($_SESSION['user_name']))
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="bootstrap/fonts/bootstrap-icons.css" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="css/navbar.css" type="text/css">
 
 
     <script type="text/javascript" src="bootstrap/js/jquery-3.6.1.min.js"></script>
@@ -79,99 +79,136 @@ if (!isset($_SESSION['user_name']))
 
 <body>
     <div class="container">
-        <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
-            aria-controls="offcanvasExample">
+        <div id="menuHolder" style="font-family:'Poppins', sans-serif">
+            <div role="navigation" class="sticky-top border-bottom border-top" id="mainNavigation">
+                <div class="flexMain">
+                    <div class="flex2">
+                        <button class="whiteLink siteLink" style="border-right:1px solid #eaeaea" onclick="menuToggle()"><i class="fas fa-bars me-2"></i> MENU</button>
+                    </div>
+                    <div class="flex3 text-center" id="siteBrand" style="font-family:'Poppins', sans-serif">
+                        Safe Spend
+                    </div>
+
+                    <div class="flex2 text-end d-block d-md-none">
+                    </div>
+
+                    <div class="flex2 text-end d-none d-md-block">
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="menuDrawer">
+                <div class="p-4 border-bottom">
+                    <div class='row'>
+                        <div class="col">
+                        </div>
+                        <div>
+                            <div class="col text-end ">
+                                <i class="fas fa-times" role="btn" onclick="menuToggle()"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <a href="budget-index.php" class="nav-menu-item"><i class="fas fa-home me-3"></i>Home</a>
+                    <a href="transaction-index.php" class="nav-menu-item"><i class="fab fa-dollar-sign me-3"></i>Transaction History</a>
+                    <a href="index.html" class="nav-menu-item"><i class="fab me-3"></i>Log out</a>
+                    <!--
+                <a href="#" class="nav-menu-item"><i class="fas fa-search me-3"></i>Explore</a>
+                <a href="#" class="nav-menu-item"><i class="fas fa-wrench me-3"></i>Services</a>
+                <a href="#" class="nav-menu-item"><i class="fas fa-dollar-sign me-3"></i>Pricing</a>
+                <a href="#" class="nav-menu-item"><i class="fas fa-file-alt me-3"></i>Blog</a>
+                <a href="#" class="nav-menu-item"><i class="fas fa-building me-3"></i>About Us</a>
+                -->
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <!--
+        <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
             Menu
         </a>
         <button class="js-push-btn" style="display:block;">
             Subscribe Push Messaging
         </button>
+
+
         <script src="main.js"></script>
 
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
-            aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <div class="d-grid gap-3">
-                <span class="row"><a href="budget-index.php"><button class="menu-button1"
-                                style="width:100%; height:45px;" style="background-color:#65f9c5;"><span
-                                    class="menutext">Home</span></button></a></span>
-                    <span class="row"><a href="transaction-index.php"><button class="menu-button1"
-                                style="width:100%; height:45px;"><span
-                                    class="menutext">Transactions</span></button></a></span>
-                    <span class="row"><a href="../report-html/index1.php"><button class="menu-button1"
-                                style="width:100%; height:45px;"><span
-                                    class="menutext">Report</span></button></a></span>
-                    <span class="row"><a href="../activities-html/index1.php"><button class="menu-button1"
-                                style="width:100%; height:45px;"><span
-                                    class="menutext">Activities</span></button></a></span>
-                    <span class="row"><a href="../reminders-html/index1.php"><button class="menu-button1"
-                                style="width:100%; height:45px;"><span class="menutext">
+                    <span class="row"><a href="transaction-index.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">Transactions</span></button></a></span>
+                    <span class="row"><a href="budget-index.php"><button class="menu-button1" style="width:100%; height:45px;" style="background-color:#65f9c5;"><span class="menutext">Budgets</span></button></a></span>
+                    <span class="row"><a href="../report-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">Report</span></button></a></span>
+                    <span class="row"><a href="../activities-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">Activities</span></button></a></span>
+                    <span class="row"><a href="../reminders-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">
                                     Reminders
                                 </span></button></a></span>
-                    <span class="row"><a href="../educate-html/index1.php"><button class="menu-button1"
-                                style="width:100%; height:45px;"><span
-                                    class="menutext">Educate</span></button></a></span>
-                    <span class="row"><a href="../help-html/index1.php"><button class="menu-button1"
-                                style="width:100%; height:45px;"><span class="menutext">Help</span></button></a></span>
-                    <span class="row"><a href="../shopping-html/index1.php"><button class="menu-button1"
-                                style="width:100%; height:45px;"><span class="menutext">Shopping
+                    <span class="row"><a href="../educate-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">Educate</span></button></a></span>
+                    <span class="row"><a href="../help-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">Help</span></button></a></span>
+                    <span class="row"><a href="../shopping-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">Shopping
                                     List</span></button></a></span>
                     <div><a href="register.php"><span style="color: red; font-size: 20; ">Log Out</span></a></div>
                 </div>
             </div>
-        </div>
-        <div class="card">
+        </div
+    -->
+            <div class="card">
 
-
-            <?php
-            $conn = new mysqli('localhost', 'root', '', 'safespend-2');
-            $var = $_SESSION['user_name'];
-            $sql = "SELECT * from transaction join performs on TID=Transaction_ID where emailperforms='$var' order by TID desc";
-            $result = mysqli_query($conn, $sql);
-            if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    ?>
-                    <hr>
-                    <?php
-                    $category = $row['category'];
-                    $amount = $row['Amount'];
-                    $type = $row['Type'];
-                    ?>
-                    <center>
-                    <div class="card" style="background-color:#FFF8E7; border:solid #FFF8E7; border-radius:10px; height:35px;">
-                        <div class="row">
-                            <div class="col">
-                                <?php 
-                                
-                                echo $category; 
-                                
-                                ?>
-                            </div>
-                            <div class="col">
-                                <?php 
-                                if($type == 'Debit')
-                                echo '<span style="color:#FF7777">-'.$amount .'</span>';
-                                else
-                                echo '<span style="color:#98DFD6">+'.$amount .'</span>';
-                                ?>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </center>
-                    <?php
-                }
-                ?>
 
                 <?php
-                echo '<hr>';
-            }
-            ?>
-            <!-- <div class="container" style="margin:0%;">
+                $conn = new mysqli('localhost', 'root', '', 'safespend-2');
+                $var = $_SESSION['user_name'];
+                $sql = "SELECT * from transaction join performs on TID=Transaction_ID where emailperforms='$var' order by TID desc";
+                $result = mysqli_query($conn, $sql);
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                ?>
+                        <hr>
+                        <?php
+                        $category = $row['category'];
+                        $amount = $row['Amount'];
+                        $type = $row['Type'];
+                        ?>
+                        <center>
+                            <div class="card" style="background-color:#FFF8E7; border:solid #FFF8E7; border-radius:10px; height:35px;">
+                                <div class="row">
+                                    <div class="col">
+                                        <?php
+
+                                        echo $category;
+
+                                        ?>
+                                    </div>
+                                    <div class="col">
+                                        <?php
+                                        if ($type == 'Debit')
+                                            echo '<span style="color:#FF7777">-' . $amount . '</span>';
+                                        else
+                                            echo '<span style="color:#98DFD6">+' . $amount . '</span>';
+                                        ?>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </center>
+                    <?php
+                    }
+                    ?>
+
+                <?php
+                    echo '<hr>';
+                }
+                ?>
+                <!-- <div class="container" style="margin:0%;">
                 <table border="5" cellspacing="2" cellpadding="2" width="70%"
                     style="border:5px solid black; border-radius:10px;">
                     <tr height="60px">
@@ -223,7 +260,7 @@ if (!isset($_SESSION['user_name']))
 
                             echo '<td>' . "Rs. " . $field4name . '</td> 
                                     <td>' . $field5name . '</td> ';
-                            ?>
+                    ?>
                             <td><input type="checkbox" name="budget_delete_id[]" value="<?= $field1name; ?>"></td>
                             </tr>
                             <?php
@@ -231,12 +268,27 @@ if (!isset($_SESSION['user_name']))
 
                         $result->free();
                     }
-                    ?>
+                            ?>
                 </table>
             </div> -->
+            </div>
+
         </div>
 
-    </div>
+        <script>
+            var menuHolder = document.getElementById('menuHolder')
+            var siteBrand = document.getElementById('siteBrand')
+
+            function menuToggle() {
+                if (menuHolder.className === "drawMenu") menuHolder.className = ""
+                else menuHolder.className = "drawMenu"
+            }
+            if (window.innerWidth < 426) siteBrand.innerHTML = "MAS"
+            window.onresize = function() {
+                if (window.innerWidth < 420) siteBrand.innerHTML = "MAS"
+                else siteBrand.innerHTML = "MY AWESOME WEBSITE"
+            }
+        </script>
 </body>
 
 </html>
