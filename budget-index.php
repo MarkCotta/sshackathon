@@ -88,9 +88,7 @@ if (!isset($_SESSION['user_name']))
         <a href="addbudget.php"><button class="btn btn-primary" style="display:block;">
                 Add Budget
             </button></a>
-        <a href="addtran.php"><button class="btn btn-primary" style="display:block;">
-                Add Transaction
-            </button></a>
+
         <script src="main.js"></script>
 
         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
@@ -118,9 +116,10 @@ if (!isset($_SESSION['user_name']))
         <div class="card">
 
             <div class="container " style="width:100%; background-color:#FFF8E7; border:solid #FFF8E7; border-radius:40px;">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1>Total Budget: <br>Rs.
+                <div class="row" style=" padding: 7% 7% 3%;">
+                    <div class=" col-md-8">
+                        <h1 style=" font-size: 2em">Total Budget: </h1>
+                        <h1 style=" font-size: 1.5em">Rs.
                             <?php
                             $mysqli = new mysqli('localhost', 'root', '', 'safespend-2');
                             $email = $_SESSION['user_name'];
@@ -140,9 +139,13 @@ if (!isset($_SESSION['user_name']))
                             ?> Remaining
                         </h1>
                     </div>
-
+                    <div class=" col-md-4">
+                        <a href="addtran.php"><button class="btn" style="display:block; background-color: #FFDD83">
+                                Add Transaction
+                            </button></a>
+                    </div>
                 </div>
-                <div class="row">
+                <div class="row" style=" padding: 3% 7% 7%;">
                     <div class="col-md-12"><progress class="progressbar" value="<?php echo $sumofspentamount; ?>" max="<?php echo $sumoftotalamount; ?>" style="width: 90%;"></progress>
                         <span>
                             <?php
