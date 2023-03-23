@@ -98,8 +98,8 @@ if (!isset($_SESSION['user_name']))
             </div>
             <div class="offcanvas-body">
                 <div class="d-grid gap-3">
-                    <span class="row"><a href="../transactions-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">Transactions</span></button></a></span>
-                    <span class="row"><a href="../budget-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;" style="background-color:#65f9c5;"><span class="menutext">Budgets</span></button></a></span>
+                    <span class="row"><a href="transaction-index.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">Transactions</span></button></a></span>
+                    <span class="row"><a href="budget-index.php"><button class="menu-button1" style="width:100%; height:45px;" style="background-color:#65f9c5;"><span class="menutext">Budgets</span></button></a></span>
                     <span class="row"><a href="../report-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">Report</span></button></a></span>
                     <span class="row"><a href="../activities-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">Activities</span></button></a></span>
                     <span class="row"><a href="../reminders-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">
