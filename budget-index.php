@@ -132,7 +132,7 @@ if (!isset($_SESSION['user_name']))
         </div>
         <div class="card">
             <div class="container"
-                style="width:100%; background-color:#FFF8E7; border:solid #FFF8E7; border-radius:10px;">
+                style="width:100%; background-color:#FFF8E7; border:solid #FFF8E7; border-radius:40px;">
                 <h1>Remaining Budget: Rs.
                     <?php
                     $mysqli = new mysqli('localhost', 'root', '', 'safespend-2');
@@ -166,9 +166,6 @@ if (!isset($_SESSION['user_name']))
                     ?>
                 </span>
             </div>
-            <div class="w3-light-grey w3-round">
-                <div class="w3-container w3-round w3-blue" style="width:25%">25%</div>
-            </div>
             <?php
             $conn = new mysqli('localhost', 'root', '', 'safespend-2');
             $var = $_SESSION['user_name'];
@@ -189,7 +186,7 @@ if (!isset($_SESSION['user_name']))
                         $percentage = 0;
                     $percentage = round($percentage, 2); ?>
                     <span style="font-size:22px;">Category: <?php echo $category;?></span>
-                    <div class="card" style="background-color:#FFF8E7; border:solid #FFF8E7; border-radius:10px; height:200px;">
+                    <div class="card" style="background-color:#FFF8E7; border:solid #FFF8E7; border-radius:40px; height:200px;">
 
                         <div class="card-body">
                             <div class="row">
