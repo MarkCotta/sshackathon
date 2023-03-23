@@ -1,4 +1,4 @@
-<html>
+<!-- <html>
     
 <head>
     <title>SafeSpend | Register</title>
@@ -46,4 +46,117 @@
         </div>
       </form>
 </body>
-</html>
+</html>  -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>SafeSpend | Register</title>
+        <link rel="stylesheet" href="bootstrap2/css/bootstrap.min.css" type="text/css">
+        <script type="text/javascript" src="bootstrap2/js/jquery-3.5.1.min.js"></script>
+        <script type="text/javascript" src="bootstrap2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css2/loginstyle.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background-color: #333333;
+            }
+            .btn{
+                font-size: 24px;
+                border-color:#e62272;
+                border:1;
+                background-color:#fff;
+           
+                color: #e62272;
+                height: auto;
+            }
+            .btn.focus, .btn:focus, .btn:hover {
+            color: #fff;
+            text-decoration: none;
+            background-color:#e62272;
+            }
+            .field-icon {
+            float: right;
+            margin-right: 140px;
+            margin-top: -25px;
+            position: relative;
+            z-index: 1;
+            }
+            .red{
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="index.php" class="logo"><img src="img/logo2.png" alt="lifestyle store logo"></a>
+                </div>
+                <div class="navbar-collapse collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right" style="font-size:20px;letter-spacing: 4px;word-spacing: -8px;">
+                        <li><a href="signup.php" target="_self"><span class="glyphicon glyphicon-user">&nbsp;Sign Up</span></a></li>
+                        <li><a href="login.php" target="_self" style="color:#e62272;"><span class="glyphicon glyphicon-log-in">&nbsp;Login</span></a></li>
+                    </ul>
+                </div>    
+            </div>
+        </nav>
+        <br><br><br><br><br><br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-6 col-xs-offset-3">
+                        <div class="panel">                  
+                            <div class="panel-heading">
+                                <h2 style="text-align:center">LOGIN</h2>
+                            </div>
+                            <div class="panel-body">
+                                <center>
+                                <p class="text-warning">Login to make a purchase</p> 
+                                <form class="form" action="login_submit.php" method="POST">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" name="email" placeholder="Email" required> 
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control"  id="password" name="password" placeholder="Password" pattern=".{6,}" required>
+                                        <i class="far fa-eye field-icon" id="togglePassword" style="cursor:pointer"></i>  
+                                    </div>
+                                    <script>
+                                        const togglePassword = document.querySelector('#togglePassword');
+                                        const password = document.querySelector('#password');
+                                        togglePassword.addEventListener('click',function(e){
+                                        const type = password.getAttribute('type') == 'password' ? 'text' : 'password';
+                                        password.setAttribute('type',type);
+                                        this.classList.toggle('fa-eye-slash');
+                                    });
+                                    </script>
+                                    <button type="submit" value="Login" class="btn">Login</button><hr>
+                                    <?phps
+                                    if(isset($_GET['error'])){
+                                    echo $_GET['error'];
+                                    }
+                                    ?>
+                                </form> 
+                                </center>
+                            </div>
+                            <br><br><br>
+                            <div class="panel-footer">
+                                <center> Don't have an account? <a href="signup.php">Register</a></center>
+                            </div>     
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <footer style="position: absolute;">
+            <div class="container">
+                <center>
+                    <p>Copyright &copy; Lifestyle Store. All Rights Reserved  |  Contact Us: +91 90000 00000</p>	
+                </center>
+            </div>
+        </footer>
+    </body>
+</html> 
