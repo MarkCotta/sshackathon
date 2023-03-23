@@ -207,7 +207,7 @@ if (!empty($_POST["submit_otp"])) {
 		<button type="submit" name="submit_otp" value="Submit" class="btnSubmit">Submit</button>
 		<?php
         if ($success == 2) {
-	        header("Location:transactions-html/index1.php");
+	        header("Location:budget-index.php");
         }
         ?>
 
