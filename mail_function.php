@@ -19,7 +19,7 @@ require 'vendor/phpmailer/phpmailer/src/SMTP.php';
 		$mail->Mailer   = "smtp";
 		$mail->setFrom("XpensoMail@gmail.com",'safespend-2');
 		$mail->AddAddress($email);
-		$mail->Subject = "OTP to Login to Xpenso";
+		$mail->Subject = "OTP to Login to SafeSpend";
 		$mail->MsgHTML($message_body);
 		$mail->IsHTML(true);		
 		$result = $mail->Send();

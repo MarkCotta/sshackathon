@@ -64,7 +64,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
                 $_SESSION['id'] = $row['Email'];
 
-                header("Location: checkotp.php");
+                header("Location: budget-index.php");
 
                 exit();
             }else{
