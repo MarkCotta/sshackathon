@@ -16,6 +16,14 @@ if (!isset($_SESSION['user_name']))
     <link rel="stylesheet" href="index1.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="https://kit.fontawesome.com/2291efdc8d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="bootstrap/fonts/bootstrap-icons.css" type="text/css">
+
+
+    <script type="text/javascript" src="bootstrap/js/jquery-3.6.1.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!---->
     <style>
@@ -277,8 +285,8 @@ if (!isset($_SESSION['user_name']))
                                 $field4name = $field2name - $field3name;
                                 $field5name = $row["category"];
                                 echo '<tr> 
-                  <td>' . $field1name . '</td> 
-                  <td>' . "Rs. " . $field2name . '</td> ';
+                                    <td>' . $field1name . '</td> 
+                                    <td>' . "Rs. " . $field2name . '</td> ';
 
                                 if ($field2name < $field3name)
                                     echo '<td bgcolor="red">' . "Rs. " . $field3name . '</td> ';
@@ -288,7 +296,7 @@ if (!isset($_SESSION['user_name']))
                                     echo '<td bgcolor="#8EFF00">' . "Rs. " . $field3name . '</td> ';
 
                                 echo '<td>' . "Rs. " . $field4name . '</td> 
-              <td>' . $field5name . '</td> ';
+                                    <td>' . $field5name . '</td> ';
                                 ?>
                                 <td><input type="checkbox" name="budget_delete_id[]" value="<?= $field1name; ?>"></td>
                                 </tr>
@@ -298,15 +306,17 @@ if (!isset($_SESSION['user_name']))
                             $result->free();
                         }
                         ?>
+                    </table>
                 </div>
+
                 <div style="margin:auto;">
-                    <div>
+                    <div class="container-sm">
 
                         <?php
                         $var = $_SESSION['user_name'];
                         $sql = "SELECT * from Budget join keeps on BID=Budget_ID where emailkeeps='$var'";
                         $result = mysqli_query($conn, $sql);
-                        $i=0;
+                        $i = 0;
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_assoc($result)) {
                                 ?>
@@ -321,23 +331,23 @@ if (!isset($_SESSION['user_name']))
                                     $percentage = 0;
                                 $percentage = round($percentage, 2); ?>
                                 <h3>
-                                
-                                <?php
-                                if ($spentamt > $totalamt) {
-                                    echo '<span style="color:red;">Budget_for_' . $category . '_exceeded ' . $percentage . '% Used </span>';
-                                } else {
-                                    echo '<span style="color:green;"> ' .  $row['category'] . ': ' . $percentage . '% </span>';
-                                    echo '<progress class="progressbar" value="' . $spentamt . '" max="' . $totalamt . '"></progress>';
-                                }
-                                ?>
+
+                                    <?php
+                                    if ($spentamt > $totalamt) {
+                                        echo '<span style="color:red;">Budget_for_' . $category . '_exceeded ' . $percentage . '% Used </span>';
+                                    } else {
+                                        echo '<span style="color:green;"> ' . $row['category'] . ': ' . $percentage . '% </span>';
+                                        echo '<progress class="progressbar" value="' . $spentamt . '" max="' . $totalamt . '"></progress>';
+                                    }
+                                    ?>
                                 </h3>
-                                <canvas id="myChart<?php echo $i;?>" style="width:100%; max-width:400px;"></canvas>
+                                <canvas id="myChart<?php echo $i; ?>" style="width:100%; max-width:400px;"></canvas>
                                 <script>
                                     var xValues = ["Spent Amount: <?php echo $spentamt; ?>", "Remaining Amount: <?php echo ($totalamt - $spentamt); ?>"];
 
                                     var yValues = ["<?php echo $spentamt; ?>", "<?php echo ($totalamt - $spentamt); ?>"]
                                     var barColors = ["#FFF2CC", "#804674"];
-                                    new Chart("myChart<?php echo $i;?>", {
+                                    new Chart("myChart<?php echo $i; ?>", {
                                         type: "pie",
                                         data: {
                                             labels: xValues,
@@ -359,14 +369,15 @@ if (!isset($_SESSION['user_name']))
                                 </script>
                                 <?php
                                 $i++;
-                                
+
                             }
                             echo '<hr width="90%">';
                         }
                         ?>
                     </div>
-                    
+
                 </div>
+            </form>
         </div>
 </body>
 
