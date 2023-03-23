@@ -20,7 +20,7 @@ if (!isset($_SESSION['user_name']))
 
 <body>
     <div class="popup">
-        <a href="transactions-html/index1.php"><button id="close" class="closebutton">&times;</button></a>
+        <a href="budget-index.php"><button id="close" class="closebutton">&times;</button></a>
         <h1 style="font-weight:700; font-size: 35;">Add a Transaction</h1>
         <br />
         <form action="connect.php" method="post">

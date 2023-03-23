@@ -14,7 +14,7 @@ if (!isset($_SESSION['user_name']))
     <script src="https://kit.fontawesome.com/2291efdc8d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="bootstrap/fonts/bootstrap-icons.css" type="text/css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">       
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 
 
@@ -47,6 +47,33 @@ if (!isset($_SESSION['user_name']))
         .container-sm {
             max-width: 50%;
         }
+
+        progress {
+            width: 200px;
+            height: 20px;
+            border-radius: 10px;
+            background-color: #FFACAC;
+            overflow: hidden;
+        }
+
+        progress::-webkit-progress-bar {
+            background-color: #FFACAC;
+            border-radius: 10px;
+        }
+
+        /* Style the value of the progress element */
+        progress::-webkit-progress-value {
+            background-color: #98DFD6;
+            border-radius: 10px;
+        }
+
+        .card {
+            border: none;
+        }
+
+        body {
+            font-family:'Poppins', sans-serif;
+        }
     </style>
 </head>
 
@@ -57,11 +84,14 @@ if (!isset($_SESSION['user_name']))
             Menu
         </a>
         <button class="js-push-btn" style="display:block;">
-        Subscribe Push Messaging
+            Subscribe Push Messaging
         </button>
-        <a href = "addbudget.php"><button class="btn btn-primary" style="display:block;">
-        Add Budget
-        </button></a>
+        <a href="addbudget.php"><button class="btn btn-primary" style="display:block;">
+                Add Budget
+            </button></a>
+        <a href="addtran.php"><button class="btn btn-primary" style="display:block;">
+                Add Transaction
+            </button></a>
         <script src="main.js"></script>
 
         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
@@ -102,12 +132,42 @@ if (!isset($_SESSION['user_name']))
         </div>
         <div class="card">
             <div class="container"
-                style="width:100%; background-color:lightblue; border:solid lightblue; border-radius:10px;">
-                <h1>Total Budget: 
+                style="width:100%; background-color:#FFF8E7; border:solid #FFF8E7; border-radius:10px;">
+                <h1>Remaining Budget: Rs.
                     <?php
-                        
+                    $mysqli = new mysqli('localhost', 'root', '', 'safespend-2');
+                    $email = $_SESSION['user_name'];
+                    $query = "SELECT BID,Total_amount,Spent_amount from budget join keeps on BID=Budget_ID where Emailkeeps='$email' ";
+                    $result = $mysqli->query($query);
+                    $sumofremainingamount = 0;
+                    $sumofspentamount = 0;
+                    $sumoftotalamount = 0;
+                    while ($row = $result->fetch_assoc()) {
+                        $spent_amount = $row['Spent_amount'];
+                        $total_amount = $row['Total_amount'];
+                        $sumofspentamount += $spent_amount;
+                        $sumoftotalamount += $total_amount;
+                    }
+                    $sumofremainingamount = $sumoftotalamount - $sumofspentamount;
+                    echo $sumofremainingamount;
                     ?>
                 </h1>
+                <h1>Total Budget: Rs.
+                    <?php echo $sumoftotalamount ?>
+                </h1>
+                <progress class="progressbar" value="<?php echo $sumofremainingamount; ?>"
+                    max="<?php echo $sumoftotalamount; ?>"></progress>
+                <span>
+                    <?php
+                    if ($sumofspentamount < $sumoftotalamount)
+                        echo (int) ($sumofremainingamount / $sumoftotalamount * 100) . '%';
+                    else
+                        echo "Exceeded the budget for this month";
+                    ?>
+                </span>
+            </div>
+            <div class="w3-light-grey w3-round">
+                <div class="w3-container w3-round w3-blue" style="width:25%">25%</div>
             </div>
             <?php
             $conn = new mysqli('localhost', 'root', '', 'safespend-2');
@@ -118,7 +178,7 @@ if (!isset($_SESSION['user_name']))
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     ?>
-                    <hr width="90%">
+                    <hr>
                     <?php
                     $spentamt = $row['Spent_amount'];
                     $totalamt = $row['Total_amount'];
@@ -129,16 +189,18 @@ if (!isset($_SESSION['user_name']))
                         $percentage = 0;
                     $percentage = round($percentage, 2); ?>
 
-                    <div class="card"
-                        style="background-color:lightblue; border:solid lightblue; border-radius:10px; height:200px;">
+                    <div class="card" style="background-color:#FFF8E7; border:solid #FFF8E7; border-radius:10px; height:200px;">
 
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-4" style="display:flex; align-items:center;">
-                                    <h3>
+                                    <h1>
                                         <?php echo $spentamt . '/' . $totalamt; ?>
-                                    </h3>
+                                    </h1>
+                                    <br />
+
                                 </div>
+
                                 <div class="col-8">
                                     <canvas id="myChart<?php echo $i; ?>" style="max-width:600px;"></canvas>
 
@@ -146,31 +208,47 @@ if (!isset($_SESSION['user_name']))
                                         var xValues = ["Spent", "Remaining"];
 
                                         var yValues = ["<?php echo $spentamt; ?>", "<?php echo ($totalamt - $spentamt); ?>"]
-                                        var barColors = ["#E21818", "#804374"];
+                                        var barColors = ["#FFBE83", "#98DFD6"];
                                         new Chart("myChart<?php echo $i; ?>", {
                                             type: "pie",
                                             data: {
                                                 labels: xValues,
-                                                datasets: [
-                                                    {
-                                                        backgroundColor: barColors,
-                                                        data: yValues,
-                                                    },
-                                                ],
+                                                datasets: [{
+                                                    backgroundColor: barColors,
+                                                    data: yValues,
+                                                }],
                                             },
                                             options: {
                                                 responsive: true,
                                                 maintainAspectRatio: false,
-                                                title: {
-                                                    display: true,
-                                                    text: "<?php echo $category; ?>",
+                                                legend: {
+                                                    display: false, // hide the legend
                                                 },
-
+                                                tooltips: {
+                                                    enabled: false, // disable the tooltips
+                                                },
+                                                plugins: {
+                                                    datalabels: {
+                                                        display: false, // hide the data labels
+                                                    },
+                                                },
                                             },
                                         });
 
                                     </script>
                                 </div>
+                            </div>
+                            <div class="row">
+
+                                <?php
+                                if ($spentamt < $totalamt)
+                                    echo '<h3>' . (int) ($spentamt / $totalamt * 100) . '% Spent</h3>';
+                                else
+                                    echo "<h5 style='color:red;'>Exceeded the budget for this month</h5>";
+                                ?>
+
+
+
                             </div>
                         </div>
                         <!-- <h3>
@@ -194,7 +272,7 @@ if (!isset($_SESSION['user_name']))
                 ?>
 
                 <?php
-                echo '<hr width="90%">';
+                echo '<hr>';
             }
             ?>
             <!-- <div class="container" style="margin:0%;">

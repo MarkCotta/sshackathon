@@ -1,6 +1,6 @@
 <?php session_start(); 
 if(!isset($_SESSION['user_name']))
-header("Location:../login.php");
+header("Location:login.php");
 ?>
 <?php
 $amount = $_POST['amount'];
@@ -52,6 +52,6 @@ if ($mysqli->connect_error) {
     $stmt->close();
 
     $mysqli->close();
-    header('Location: transactions-html/index1.php');
+    header('Location: budget-index.php');
 }
 ?>
