@@ -14,6 +14,8 @@ if (!isset($_SESSION['user_name']))
     <script src="https://kit.fontawesome.com/2291efdc8d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="bootstrap/fonts/bootstrap-icons.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">       
+
 
 
     <script type="text/javascript" src="bootstrap/js/jquery-3.6.1.min.js"></script>
@@ -43,6 +45,9 @@ if (!isset($_SESSION['user_name']))
 
         .container-sm {
             max-width: 50%;
+        }
+        body{
+            font-family: 'Poppins', sans-serif;
         }
     </style>
 </head>

@@ -10,6 +10,12 @@ if (!isset($_SESSION['user_name']))
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
     <link rel="stylesheet" href="addtran.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">       
+    <style>
+            body{
+                font-family: 'Poppins', sans-serif;
+            }
+    </style>
 </head>
 
 <body>
