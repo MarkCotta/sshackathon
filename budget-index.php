@@ -56,10 +56,13 @@ if (!isset($_SESSION['user_name']))
             aria-controls="offcanvasExample">
             Menu
         </a>
-        <!-- <button class="js-push-btn" style="display: none;">
+        <button class="js-push-btn" style="display:block;">
         Subscribe Push Messaging
         </button>
-        <script src="main.js"></script> -->
+        <a href = "addbudget.php"><button class="btn btn-primary" style="display:block;">
+        Add Budget
+        </button></a>
+        <script src="main.js"></script>
 
         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
             aria-labelledby="offcanvasExampleLabel">
@@ -99,9 +102,12 @@ if (!isset($_SESSION['user_name']))
         </div>
         <div class="card">
             <div class="container"
-                style="width:100%; max-width:500px; background-color:lightblue; border:solid lightblue; border-radius:10px;">
-                <canvas id="myChart<?php echo $i; ?>" style=""></canvas>
-
+                style="width:100%; background-color:lightblue; border:solid lightblue; border-radius:10px;">
+                <h1>Total Budget: 
+                    <?php
+                        
+                    ?>
+                </h1>
             </div>
             <?php
             $conn = new mysqli('localhost', 'root', '', 'safespend-2');

@@ -1,6 +1,6 @@
 <?php session_start(); 
 if(!isset($_SESSION['user_name']))
-header("Location:../login.php");
+header("Location:login.php");
 ?>
 <?php
 $amount = $_POST['amount'];
@@ -51,7 +51,6 @@ if ($mysqli->connect_error) {
     }
     else
     {
-        print_r("Hello World"); 
         $query = "select * from Budget join keeps on BID=Budget_ID where Emailkeeps='$email' and category = '$category'";
         $result = $mysqli->query($query);
         $rows = $result->fetch_assoc();
@@ -63,6 +62,6 @@ if ($mysqli->connect_error) {
         $stmt->close();
     }
     $mysqli->close();
-    header('Location: budget-html/index1.php');
+    header('Location: budget-index.php');
 }
 ?>

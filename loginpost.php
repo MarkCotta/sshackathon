@@ -82,7 +82,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
     }
 } else {
 
-    header("Location: transactions-html/index1.php");
+    header("Location: budget-index.php");
 
     exit();
 }
