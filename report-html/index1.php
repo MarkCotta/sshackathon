@@ -3,7 +3,7 @@ if(!isset($_SESSION['user_name']))
 header("Location:../login.php");
 ?>
 <html>
-<title>Xpenso | Transactions</title>
+<title>SafeSpend | Transactions</title>
 <link rel="icon" href="../public/playground_assets/Logo.png" type="image/x-icon">
 
 <head>

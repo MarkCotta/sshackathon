@@ -1,6 +1,6 @@
 <?php session_start(); ?>
 <html>
-<title>Xpenso | Educate</title>
+<title>SafeSpend | Educate</title>
 <link rel="icon" href="../public/playground_assets/Logo.png" type="image/x-icon">
 
 <head>

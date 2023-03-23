@@ -1,7 +1,7 @@
 <html>
     
 <head>
-    <title>Xpenso | Register</title>
+    <title>SafeSpend | Register</title>
     <link rel="stylesheet" type="text/css" href="register.css" />
     <link rel="icon" href="public/playground_assets/Logo.png" type="image/x-icon">
 </head>
