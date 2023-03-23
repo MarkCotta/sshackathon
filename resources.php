@@ -19,7 +19,6 @@ if (!isset($_SESSION['user_name']))
     <link rel="stylesheet" href="css/navbar.css" type="text/css">
 
 
-
     <script type="text/javascript" src="bootstrap/js/jquery-3.6.1.min.js"></script>
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 
@@ -81,7 +80,6 @@ if (!isset($_SESSION['user_name']))
 </head>
 
 <body>
-
     <div id="menuHolder" style="font-family:'Poppins', sans-serif">
         <div role="navigation" class="sticky-top border-bottom border-top" id="mainNavigation">
             <div class="flexMain">
@@ -89,7 +87,7 @@ if (!isset($_SESSION['user_name']))
                     <button class="whiteLink siteLink" style="border-right:1px solid #eaeaea" onclick="menuToggle()"><i class="fas fa-bars me-2"></i> MENU</button>
                 </div>
                 <div class="flex3 text-center" id="siteBrand" style="font-family:'Poppins', sans-serif">
-                    Home
+                    Resources
                 </div>
 
                 <div class="flex2 text-end d-block d-md-none">
@@ -127,236 +125,245 @@ if (!isset($_SESSION['user_name']))
         </div>
     </div>
 
-    <div class="container">
+    <div style="font-size:1.8em; padding:5% 10%; text-align:center; background-color:#639FFF;  color:floralwhite;">Financial Resources</div>
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    Tips to save money on a low income
+                </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <div class="container">
+                        <div class="container" style="text-align:center"><a href="https://www.youtube.com/watch?v=V38rn_E0r88"><button class="btn" style="background-color:#FFACAC">Watch a video</button></a></div>
+                        <div class="container">
+                            <ol>
+                                <li>Create a budget and track your expenses.</li>
+                                <li>Cut back on unnecessary expenses, such as subscriptions or services you don't need.</li>
+                                <li>Shop smart and consider buying in bulk or generic brands</li>
+                                <li>Cook at home instead of eating out.</li>
+                                <li>Use public transportation instead of owning a car.</li>
+                                <li>Look for free or low-cost entertainment.</li>
+                                <li>Save your spare change and deposit it in a savings account.</li>
+                            </ol>
 
-        <!--
-        <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-            Menu
-        </a>
-        <button class="js-push-btn" style="display:block;">
-            Subscribe Push Messaging
-        </button>
+                            Remember, every little bit helps when it comes to saving money on a low income. By making a few small changes to your spending habits, you can start building up your savings and improving your financial situation.
+                        </div>
 
-
-        <script src="main.js"></script>
-
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <div class="d-grid gap-3">
-                    <span class="row"><a href="transaction-index.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">Transactions</span></button></a></span>
-                    <span class="row"><a href="budget-index.php"><button class="menu-button1" style="width:100%; height:45px;" style="background-color:#65f9c5;"><span class="menutext">Budgets</span></button></a></span>
-                    <span class="row"><a href="../report-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">Report</span></button></a></span>
-                    <span class="row"><a href="../activities-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">Activities</span></button></a></span>
-                    <span class="row"><a href="../reminders-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">
-                                    Reminders
-                                </span></button></a></span>
-                    <span class="row"><a href="../educate-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">Educate</span></button></a></span>
-                    <span class="row"><a href="../help-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">Help</span></button></a></span>
-                    <span class="row"><a href="../shopping-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">Shopping
-                                    List</span></button></a></span>
-                    <div><a href="register.php"><span style="color: red; font-size: 20; ">Log Out</span></a></div>
-                </div>
-            </div>
-        </div
-    -->
-
-        <div class="card">
-
-            <div class="container " style="width:100%; background-color:#FFF8E7; border:solid #FFF8E7; border-radius:40px;">
-                <div class="row" style=" padding: 7% 7% 3%;">
-                    <div class=" col-md-8">
-                        <h1 style=" font-size: 2em">Total Budget: </h1>
-                        <h1 style=" font-size: 1.5em">Rs.
-                            <?php
-                            $mysqli = new mysqli('localhost', 'root', '', 'safespend-2');
-                            $email = $_SESSION['user_name'];
-                            $query = "SELECT BID,Total_amount,Spent_amount from budget join keeps on BID=Budget_ID where Emailkeeps='$email' ";
-                            $result = $mysqli->query($query);
-                            $sumofremainingamount = 0;
-                            $sumofspentamount = 0;
-                            $sumoftotalamount = 0;
-                            while ($row = $result->fetch_assoc()) {
-                                $spent_amount = $row['Spent_amount'];
-                                $total_amount = $row['Total_amount'];
-                                $sumofspentamount += $spent_amount;
-                                $sumoftotalamount += $total_amount;
-                            }
-                            $sumofremainingamount = $sumoftotalamount - $sumofspentamount;
-                            echo $sumofremainingamount;
-                            ?> Remaining
-                        </h1>
-                    </div>
-                    <div class=" col-md-4">
-                        <a href="addtran.php"><button class="btn" style="display:block; background-color: #FFDD83">
-                                Add Transaction
-                            </button></a>
                     </div>
                 </div>
-                <div class="row" style=" padding: 3% 7% 7%;">
-                    <div class="col-md-12"><progress class="progressbar" value="<?php echo $sumofspentamount; ?>" max="<?php echo $sumoftotalamount; ?>" style="width: 90%;"></progress>
-                        <span>
-                            <?php
-                            if ($sumofspentamount < $sumoftotalamount)
-                                echo (int) ($sumofspentamount / $sumoftotalamount * 100) . '%';
-                            else if ($sumofspentamount > $sumoftotalamount)
-                                echo "Exceeded the budget for this month";
-                            else
-                                echo "Budget Limit Reached";
-                            ?>
-                        </span>
-                    </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                    Tips on how to budget paychecks
+                </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <div class="container">
+                        <div class="container" style="text-align:center"><a href="https://www.youtube.com/watch?v=hyYab__Knb8"><button class="btn" style="background-color:#FFACAC">Watch a video</button></a></div>
+                        <div class="container">
+                            <ol>
+                                <li>Calculate your income after taxes and deductions.</li>
+                                <li>List necessary expenses and prioritize them.</li>
+                                <li>Set savings goals and make them a priority.</li>
+                                <li>Cut back on unnecessary expenses.</li>
+                                <li>Track your spending and adjust as needed.</li>
+                                <li>Be realistic and flexible with your budget.</li>
+                            </ol>
 
+                            Remember, the key to successful budgeting is to be realistic and flexible. Don't be too hard on yourself if you slip up, and be willing to make adjustments as needed.
+                        </div>
+
+                    </div>
                 </div>
             </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                    Tips for personal finance for students
+                </button>
+            </h2>
+            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <div class="container">
+                        <div class="container" style="text-align:center"><a href="https://www.youtube.com/watch?v=MXCvtC0HqLE"><button class="btn" style="background-color:#FFACAC">Watch a video</button></a></div>
+                        <div class="container">
+                            <ol>
+                                <li>Create a budget and stick to it.</li>
+                                <li>Live within your means and avoid overspending.</li>
+                                <li>Take advantage of student discounts.</li>
+                                <li>Minimize student debt and consider scholarships and part-time work.</li>
+                                <li>Start saving early, even a small amount.</li>
+                                <li>Be realistic and flexible with your budget.</li>
+                                <li>Build credit responsibly by paying bills on time and keeping balance low.</li>
+                            </ol>
+                            Remember, the key to successful budgeting is to be realistic and flexible. Don't be too hard on yourself if you slip up, and be willing to make adjustments as needed.
+                        </div>
 
-            <div class="container " style="width:100%; border-radius:40px; margin-left: auto; margin-right: auto; padding: 5% 14%;">
-                <a href="addbudget.php">
-                    <button class="btn" style="display:block; width: 100%; background-color: #FFBFA9">
-                        Add Budget
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                    Financial aid resources
+                </button>
+            </h2>
+            <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <div class="container">
+                        <div class="container">
+                            <ol>
+                                <li>National Scholarship Portal: A platform that offers various scholarships to students across India. - <a href="https://scholarships.gov.in/">Visit</a></li>
+                                <li>Ministry of Minority Affairs Scholarship: A scheme offered to students from minority communities to support their education. - <a href="https://scholarships.gov.in/">Visit</a></li>
+                                <li>Central Sector Scholarship Scheme: A scholarship scheme offered to students from low-income families pursuing undergraduate and postgraduate programs. - <a href="https://scholarships.gov.in/">Visit</a></li>
+                                <li>National Handicapped Finance and Development Corporation: Provides scholarships and financial assistance to students with disabilities. - <a href="http://www.nhfdc.nic.in/">Visit</a></li>
+                                <li>State Governments: Many state governments in India offer scholarships and financial aid to students based on their merit and financial need. </li>
+                                <li>Educational Loans: Several banks and financial institutions in India offer educational loans to students pursuing higher education. -
+                                    <ul>
+                                        <li>State Bank of India - <a href="https://www.sbi.co.in/loans/education-loans">Visit</a></li>
+                                        <li>HDFC Bank - <a href="https://www.hdfcbank.com/personal/loans/educational-loan">Visit</a></li>
+                                        <li>Axis Bank - <a href="https://www.axisbank.com/retail/loans/education-loan/features-benefits">Visit</a></li>
+                                    </ul>
+                                </li>
+                            </ol>
+                            It's important to note that each of these resources has its own eligibility criteria, application process, and deadline. Students should research and evaluate these resources carefully before applying for financial aid.
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="font-size:1.8em; padding:5% 10%; text-align:center;  background-color:#FBFFB1; color:dimgrey;">Metal Health Resources</div>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Tips on coping with Financial Stress
                     </button>
-                </a>
-            </div>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="container">
+                            <div class="container" style="text-align:center"><a href="https://www.youtube.com/watch?v=B8QUg0PNG_Y"><button class="btn" style="background-color:#FFACAC">Watch a video</button></a></div>
+                            <div class="container">
+                                <ol>
+                                    <li>Acknowledge and accept your feelings.</li>
+                                    <li>Identify the source of your financial stress.</li>
+                                    <li>Create and stick to a budget.</li>
+                                    <li>Seek support from friends, family, or a financial advisor.</li>
+                                    <li>Practice self-care activities to reduce stress.</li>
+                                    <li>Take action to address the problem.</li>
+                                    <li>Focus on the present and take steps to improve your financial situation.</li>
+                                </ol>
 
-            <?php
-            $conn = new mysqli('localhost', 'root', '', 'safespend-2');
-            $var = $_SESSION['user_name'];
-            $sql = "SELECT * from Budget join keeps on BID=Budget_ID where emailkeeps='$var'";
-            $result = mysqli_query($conn, $sql);
-            $i = 0;
-            if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-            ?>
-                    <?php
-                    $spentamt = $row['Spent_amount'];
-                    $totalamt = $row['Total_amount'];
-                    $category = $row['category'];
-                    if ($totalamt != 0)
-                        $percentage = (float) $spentamt / (float) $totalamt * 100;
-                    else
-                        $percentage = 0;
-                    $percentage = round($percentage, 2); ?>
-                    <span style="font-size:22px;">Category: <?php echo $category; ?></span>
-                    <div class="card" style="background-color:#FFF8E7; border:solid #FFF8E7; border-radius:40px; height:200px;">
-
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-8" style="display:flex; align-items:center; margin-right: 0; margin-left: auto;">
-
-                                    <table style="text-align : left;">
-                                        <td>
-                                            <h1>
-                                                <?php echo $spentamt . '/' . $totalamt; ?>
-                                            </h1>
-                                            </tr>
-                                        <td>
-                                            <?php
-                                            if ($spentamt < $totalamt)
-                                                echo '<h3>' . (int) ($spentamt / $totalamt * 100) . '% Spent</h3>';
-                                            else
-                                                echo "<h5 style='color:red; font-size:18px;'>Exceeded the budget for this month</h5>";
-                                            ?>
-                                            </tr>
-                                    </table>
-
-
-                                </div>
-
-                                <div class="col-4">
-                                    <canvas id="myChart<?php echo $i; ?>" style="max-width:600px;"></canvas>
-
-                                    <script>
-                                        var xValues = ["Spent", "Remaining"];
-
-                                        var yValues = ["<?php echo $spentamt; ?>", "<?php echo ($totalamt - $spentamt); ?>"]
-                                        var barColors = ["#FFBE83", "#98DFD6"];
-                                        new Chart("myChart<?php echo $i; ?>", {
-                                            type: "pie",
-                                            data: {
-                                                labels: xValues,
-                                                datasets: [{
-                                                    backgroundColor: barColors,
-                                                    data: yValues,
-                                                }],
-                                            },
-                                            options: {
-                                                responsive: true,
-                                                maintainAspectRatio: false,
-                                                legend: {
-                                                    display: false, // hide the legend
-                                                },
-                                                tooltips: {
-                                                    enabled: false, // disable the tooltips
-                                                },
-                                                plugins: {
-                                                    datalabels: {
-                                                        display: false, // hide the data labels
-                                                    },
-                                                },
-                                            },
-                                        });
-                                    </script>
-                                </div>
-                            </div>
-                            <div class="row">
-
-                                <!--
-                                <?php
-                                if ($spentamt < $totalamt)
-                                    echo '<h3 style="font-size: 15%;">' . (int) ($spentamt / $totalamt * 100) . "% Spent</h3>";
-                                else
-                                    echo "<h5 style='color:red; font-size: 15%;'>Exceeded the budget for this month</h5>";
-                                ?>
-                            -->
-
-
-
-
+                                Remember, coping with financial stress is about taking action and seeking support when needed. With time and effort, you can develop healthy habits and strategies to better manage your finances and reduce stress.
                             </div>
                         </div>
-                        <!-- <h3>
-
-                        <?php
-                        if ($spentamt > $totalamt) {
-                            echo '<span style="color:red;">Budget_for_' . $category . '_exceeded ' . $percentage . '% Used </span>';
-                        } else {
-                            echo '<span style="color:green;"> ' . $row['category'] . ': ' . $percentage . '% </span>';
-                            echo '<progress class="progressbar" value="' . $spentamt . '" max="' . $totalamt . '"></progress>';
-                        }
-                        ?>
-                    </h3> -->
-
                     </div>
-                <?php
-                    $i++;
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        How debt affects your mental health
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="container">
+                            <div class="container" style="text-align:center"><a href="https://www.youtube.com/watch?v=SsuDutzcRWE"><button class="btn" style="background-color:#FFACAC">Watch a video</button></a></div>
+                            <div class="container">
+                                <ol>
+                                    <li>Debt can lead to stress, anxiety, and depression.</li>
+                                    <li>It can affect self-esteem and lead to feelings of shame or embarrassment.</li>
+                                    <li>It can lead to sleep problems and physical health issues.</li>
+                                    <li>It can impact relationships and cause social isolation.</li>
+                                    <li>It can limit future opportunities and cause feelings of hopelessness.</li>
+                                    <li>It can lead to poor decision-making and impulsive behavior.</li>
+                                    <li>It can cause a cycle of debt and financial instability.</li>
+                                </ol>
+
+                                Remember, if you find yourself in a situation like the ones described above you should acknowledgeyou feelings and try to break the cycle. We believe in you.
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        Recognizing you have money problems
+                    </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="container">
+                            <div class="container" style="text-align:center"><a href="https://www.youtube.com/watch?v=hmAjftS73QA"><button class="btn" style="background-color:#FFACAC">Watch a video</button></a></div>
+                            <div class="container">
+                                <ol>
+                                    <li>Difficulty paying bills on time or in full</li>
+                                    <li>Constantly worrying about money</li>
+                                    <li>Arguments or tension with family members or partners about finances</li>
+                                    <li>Ignoring bills or avoiding financial statements</li>
+                                    <li>Feeling ashamed or embarrassed about financial situation</li>
+                                </ol>
+                                It is important that when we recognize that we have money problems, you need to take action to get to a better place, while that is extremely difficult there are many resources available for you to look out for your mental health.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                        Free Mental Health resources in India
+                    </button>
+                </h2>
+                <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="container">
+                            <div class="container">
+                                <ol>
+                                    <li>National Suicide Prevention Hotline (AASRA): +91-9820466726 (24x7 Helpline) - <a href="https://aasra.info/">Visit</a></li>
+                                    <li>National Institute of Mental Health and Neurosciences (NIMHANS) - <a href="https://nimhans.ac.in/">Visit</a></li>
+                                    <li>The Live Love Laugh Foundation - <a href="https://www.thelivelovelaughfoundation.org/">Visit</a></li>
+                                    <li>Vandrevala Foundation - <a href="https://vandrevalafoundation.com/">Visit</a></li>
+                                    <li>Mpower - <a href="https://mpowerminds.com/">Visit</a></li>
+                                    <li>Fortis Stress Helpline - <a href="https://www.fortishealthcare.com/india/mental-health-helpline">Visit</a></li>
+                                    <li>Manas Foundation - <a href="https://manasfoundation.in/">Visit</a></li>
+                                    <li>Sneha Foundation India - <a href="https://www.snehaindia.org/">Visit</a></li>
+
+                                </ol>
+                                It's important to note that this is not an exhaustive list, and there may be other resources available depending on your location and specific needs.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <script>
+                var menuHolder = document.getElementById('menuHolder')
+                var siteBrand = document.getElementById('siteBrand')
+
+                function menuToggle() {
+                    if (menuHolder.className === "drawMenu") menuHolder.className = ""
+                    else menuHolder.className = "drawMenu"
                 }
-                ?>
-
-            <?php
-                echo '<hr>';
-            }
-            ?>
-        </div>
-
-    </div>
-
-    <script>
-        var menuHolder = document.getElementById('menuHolder')
-        var siteBrand = document.getElementById('siteBrand')
-
-        function menuToggle() {
-            if (menuHolder.className === "drawMenu") menuHolder.className = ""
-            else menuHolder.className = "drawMenu"
-        }
-        if (window.innerWidth < 426) siteBrand.innerHTML = "Home"
-        window.onresize = function() {
-            if (window.innerWidth < 420) siteBrand.innerHTML = "Home"
-            else siteBrand.innerHTML = "Home"
-        }
-    </script>
+                if (window.innerWidth < 426) siteBrand.innerHTML = "Resources"
+                window.onresize = function() {
+                    if (window.innerWidth < 420) siteBrand.innerHTML = "Resources "
+                    else siteBrand.innerHTML = "Resources"
+                }
+            </script>
 </body>
 
 </html>
