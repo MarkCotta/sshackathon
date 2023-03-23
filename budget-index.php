@@ -155,14 +155,16 @@ if (!isset($_SESSION['user_name']))
                 <h1>Total Budget: Rs.
                     <?php echo $sumoftotalamount ?>
                 </h1>
-                <progress class="progressbar" value="<?php echo $sumofremainingamount; ?>"
+                <progress class="progressbar" value="<?php echo $sumofspentamount; ?>"
                     max="<?php echo $sumoftotalamount; ?>"></progress>
                 <span>
                     <?php
                     if ($sumofspentamount < $sumoftotalamount)
-                        echo (int) ($sumofremainingamount / $sumoftotalamount * 100) . '%';
-                    else
+                        echo (int) ($sumofspentamount / $sumoftotalamount * 100) . '%';
+                    else if($sumofspentamount > $sumoftotalamount)
                         echo "Exceeded the budget for this month";
+                    else
+                        echo "Budget Limit Reached";
                     ?>
                 </span>
             </div>
