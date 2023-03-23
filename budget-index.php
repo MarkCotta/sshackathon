@@ -85,9 +85,7 @@ if (!isset($_SESSION['user_name']))
         <button class="js-push-btn" style="display:block;">
             Subscribe Push Messaging
         </button>
-        <a href="addbudget.php"><button class="btn btn-primary" style="display:block;">
-                Add Budget
-            </button></a>
+
 
         <script src="main.js"></script>
 
@@ -160,8 +158,16 @@ if (!isset($_SESSION['user_name']))
                     </div>
 
                 </div>
-
             </div>
+
+            <div class="container " style="width:100%; border-radius:40px; margin-left: auto; margin-right: auto; padding: 5% 14%;">
+                <a href="addbudget.php">
+                    <button class="btn" style="display:block; width: 100%; background-color: #FFBFA9">
+                        Add Budget
+                    </button>
+                </a>
+            </div>
+
             <?php
             $conn = new mysqli('localhost', 'root', '', 'safespend-2');
             $var = $_SESSION['user_name'];
@@ -171,7 +177,6 @@ if (!isset($_SESSION['user_name']))
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
             ?>
-                    <hr>
                     <?php
                     $spentamt = $row['Spent_amount'];
                     $totalamt = $row['Total_amount'];
@@ -281,69 +286,6 @@ if (!isset($_SESSION['user_name']))
                 echo '<hr>';
             }
             ?>
-            <!-- <div class="container" style="margin:0%;">
-                <table border="5" cellspacing="2" cellpadding="2" width="70%"
-                    style="border:5px solid black; border-radius:10px;">
-                    <tr height="60px">
-                        <th bgcolor="#AEF28A">
-                            <font face="Arial">Budget ID</font>
-                            </td>
-                        <th bgcolor="#AEF28A" width="20%">
-                            <font face="Arial">Total Amount</font>
-                            </td>
-                        <th bgcolor="#AEF28A" width="22%">
-                            <font face="Arial">Spent Amount</font>
-                            </td>
-                        <th bgcolor="#AEF28A">
-                            <font face="Arial">Remaining Amount</font>
-                            </td>
-                        <th bgcolor="#AEF28A">
-                            <font face="Arial">Category</font>
-                            </td>
-                        <th bgcolor="#AEF28A">
-                            <font face="Arial"><button type="submit" name="budget_delete_multiple_btn"
-                                    style="width: 100px;height: 30px;background-color: red;border-radius: 10px;border-color: #f5f5fb;">Delete</button>
-                            </font>
-                        </th>
-                    </tr>
-                    <?php
-                    $mysqli = new mysqli('localhost', 'root', '', 'safespend-2');
-                    $var = $_SESSION['user_name'];
-                    $query = "SELECT * FROM budget join keeps on BID = Budget_ID where Emailkeeps = '$var'";
-
-                    echo '';
-
-                    if ($result = $mysqli->query($query)) {
-                        while ($row = $result->fetch_assoc()) {
-                            $field1name = $row["BID"];
-                            $field2name = (int) $row["Total_amount"];
-                            $field3name = (int) $row["Spent_amount"];
-                            $field4name = $field2name - $field3name;
-                            $field5name = $row["category"];
-                            echo '<tr> 
-                                    <td>' . $field1name . '</td> 
-                                    <td>' . "Rs. " . $field2name . '</td> ';
-
-                            if ($field2name < $field3name)
-                                echo '<td bgcolor="red">' . "Rs. " . $field3name . '</td> ';
-                            else if (($field3name > ((8 / 10) * $field2name)) && ($field3name <= $field2name))
-                                echo '<td bgcolor="#FFA600">' . "Rs. " . $field3name . '</td> ';
-                            else
-                                echo '<td bgcolor="#8EFF00">' . "Rs. " . $field3name . '</td> ';
-
-                            echo '<td>' . "Rs. " . $field4name . '</td> 
-                                    <td>' . $field5name . '</td> ';
-                    ?>
-                            <td><input type="checkbox" name="budget_delete_id[]" value="<?= $field1name; ?>"></td>
-                            </tr>
-                            <?php
-                        }
-
-                        $result->free();
-                    }
-                            ?>
-                </table>
-            </div> -->
         </div>
 
     </div>
