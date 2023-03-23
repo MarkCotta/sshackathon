@@ -188,7 +188,7 @@ if (!isset($_SESSION['user_name']))
                     else
                         $percentage = 0;
                     $percentage = round($percentage, 2); ?>
-
+                    <span style="font-size:22px;">Category: <?php echo $category;?></span>
                     <div class="card" style="background-color:#FFF8E7; border:solid #FFF8E7; border-radius:10px; height:200px;">
 
                         <div class="card-body">
@@ -244,7 +244,7 @@ if (!isset($_SESSION['user_name']))
                                 if ($spentamt < $totalamt)
                                     echo '<h3>' . (int) ($spentamt / $totalamt * 100) . '% Spent</h3>';
                                 else
-                                    echo "<h5 style='color:red;'>Exceeded the budget for this month</h5>";
+                                    echo "<h5 style='color:red; font-size:18px;'>Exceeded the budget for this month</h5>";
                                 ?>
 
 
