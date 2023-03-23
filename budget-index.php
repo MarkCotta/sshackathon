@@ -89,7 +89,7 @@ if (!isset($_SESSION['user_name']))
                     <button class="whiteLink siteLink" style="border-right:1px solid #eaeaea" onclick="menuToggle()"><i class="fas fa-bars me-2"></i> MENU</button>
                 </div>
                 <div class="flex3 text-center" id="siteBrand" style="font-family:'Poppins', sans-serif">
-                    Safe Spend
+                    Home
                 </div>
 
                 <div class="flex2 text-end d-block d-md-none">
@@ -105,11 +105,10 @@ if (!isset($_SESSION['user_name']))
             <div class="p-4 border-bottom">
                 <div class='row'>
                     <div class="col">
+                        <img src=".\images\newlogo.png" style="height:3em;">
                     </div>
-                    <div>
-                        <div class="col text-end ">
-                            <i class="fas fa-times" role="btn" onclick="menuToggle()"></i>
-                        </div>
+                    <div class="col text-end ">
+                        <i class="fas fa-times" role="btn" onclick="menuToggle()"></i>
                     </div>
                 </div>
             </div>
@@ -164,7 +163,7 @@ if (!isset($_SESSION['user_name']))
             </div>
         </div
     -->
-        
+
         <div class="card">
 
             <div class="container " style="width:100%; background-color:#FFF8E7; border:solid #FFF8E7; border-radius:40px;">
@@ -352,10 +351,10 @@ if (!isset($_SESSION['user_name']))
             if (menuHolder.className === "drawMenu") menuHolder.className = ""
             else menuHolder.className = "drawMenu"
         }
-        if (window.innerWidth < 426) siteBrand.innerHTML = "MAS"
+        if (window.innerWidth < 426) siteBrand.innerHTML = "Home"
         window.onresize = function() {
-            if (window.innerWidth < 420) siteBrand.innerHTML = "MAS"
-            else siteBrand.innerHTML = "MY AWESOME WEBSITE"
+            if (window.innerWidth < 420) siteBrand.innerHTML = "Home"
+            else siteBrand.innerHTML = "Home"
         }
     </script>
 </body>
