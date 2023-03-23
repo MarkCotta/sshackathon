@@ -57,13 +57,13 @@ if (!isset($_SESSION['user_name']))
         }
 
         progress::-webkit-progress-bar {
-            background-color: #FFACAC;
+            background-color:#98DFD6 ;
             border-radius: 10px;
         }
 
         /* Style the value of the progress element */
         progress::-webkit-progress-value {
-            background-color: #98DFD6;
+            background-color: #FFACAC;
             border-radius: 10px;
         }
 
@@ -133,7 +133,7 @@ if (!isset($_SESSION['user_name']))
         <div class="card">
             <div class="container"
                 style="width:100%; background-color:#FFF8E7; border:solid #FFF8E7; border-radius:40px;">
-                <h1>Remaining Budget: Rs.
+                <h1>Total Budget: <br>Rs.
                     <?php
                     $mysqli = new mysqli('localhost', 'root', '', 'safespend-2');
                     $email = $_SESSION['user_name'];
@@ -150,7 +150,7 @@ if (!isset($_SESSION['user_name']))
                     }
                     $sumofremainingamount = $sumoftotalamount - $sumofspentamount;
                     echo $sumofremainingamount;
-                    ?>
+                    ?> Remaining
                 </h1>
                 <h1>Total Budget: Rs.
                     <?php echo $sumoftotalamount ?>
