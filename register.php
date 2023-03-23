@@ -139,7 +139,7 @@
                                     });
                                     </script>
                                     <button type="submit" value="Login" class="btn">Login</button><hr>
-                                    <?phps
+                                    <?php
                                     if(isset($_GET['error'])){
                                     echo $_GET['error'];
                                     }
