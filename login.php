@@ -18,6 +18,7 @@
 }
 body{
     background-color: #e5e5e5;
+    font-size: 40px;
 }
 .background{
     width: 430px;
@@ -51,8 +52,8 @@ body{
     bottom: -80px;
 }
 form{
-    height: 570px;
-    width: 400px;
+    height: 50%;
+    width: 60%;
     background-color: rgba(51, 255, 61, 0.22);
     position: absolute;
     transform: translate(-50%,-50%);

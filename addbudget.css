@@ -7,19 +7,59 @@
 }
 body{
     background-color: #dddddd;
+    font-size:30px;
 }
-.popup{
+/* .popup{
     background-color: #59d434;
-    width: 420px;
+    width: 100%;
     padding: 30px 40px;
-    position: absolute;
-    transform: translate(-50%,-50%);
-    left: 50%;
-    top: 50%;
     border-radius: 8px;
     display: none;
     font-family: "Poppins",sans-serif;
+} */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 70%;
+    height: 30%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.popup form {
+    background-color: #ffb8b8;
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%;
+}
+
+.popup form input[type="number"],
+.popup form select {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.popup form button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .popup form {
+        width: 90%;
+        max-width: none;
+    }
+}
+
 .closebutton{
     display: block;
     margin:0 0 auto;
@@ -38,19 +78,19 @@ body{
     margin-top: -20px;
  }
  .popup p{
-     font-size: 14px;
+     font-size: 24px;
      margin: 20px 0;
      line-height: 25px;
  }
  a{
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 80px;
+    height: 80px;
     position: relative;
     left:150px;
     margin: auto;
     background-color: #0f72e5;
-    border-radius: 20px;
+    border-radius: 40px;
     color: #ffffff;
     text-decoration: none;
     padding: px 0;

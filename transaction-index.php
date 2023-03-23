@@ -120,7 +120,7 @@ if (!isset($_SESSION['user_name']))
                     <span class="row"><a href="../shopping-html/index1.php"><button class="menu-button1"
                                 style="width:100%; height:45px;"><span class="menutext">Shopping
                                     List</span></button></a></span>
-                    <div><a href="../register.php"><span style="color: red; font-size: 20; ">Log Out</span></a></div>
+                    <div><a href="register.php"><span style="color: red; font-size: 20; ">Log Out</span></a></div>
                 </div>
             </div>
         </div>

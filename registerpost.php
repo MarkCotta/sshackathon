@@ -47,6 +47,6 @@ if ($conn->connect_error) {
     $stmt->execute();
     $stmt->close();
     $conn->close();
-    //header('Location: login.php');
+    header('Location: login.php');
 }
 ?>
