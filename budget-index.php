@@ -57,7 +57,7 @@ if (!isset($_SESSION['user_name']))
         }
 
         progress::-webkit-progress-bar {
-            background-color:#98DFD6 ;
+            background-color: #98DFD6;
             border-radius: 10px;
         }
 
@@ -72,15 +72,14 @@ if (!isset($_SESSION['user_name']))
         }
 
         body {
-            font-family:'Poppins', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
-            aria-controls="offcanvasExample">
+        <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
             Menu
         </a>
         <button class="js-push-btn" style="display:block;">
@@ -94,79 +93,71 @@ if (!isset($_SESSION['user_name']))
             </button></a>
         <script src="main.js"></script>
 
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
-            aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <div class="d-grid gap-3">
-                    <span class="row"><a href="../transactions-html/index1.php"><button class="menu-button1"
-                                style="width:100%; height:45px;"><span
-                                    class="menutext">Transactions</span></button></a></span>
-                    <span class="row"><a href="../budget-html/index1.php"><button class="menu-button1"
-                                style="width:100%; height:45px;" style="background-color:#65f9c5;"><span
-                                    class="menutext">Budgets</span></button></a></span>
-                    <span class="row"><a href="../report-html/index1.php"><button class="menu-button1"
-                                style="width:100%; height:45px;"><span
-                                    class="menutext">Report</span></button></a></span>
-                    <span class="row"><a href="../activities-html/index1.php"><button class="menu-button1"
-                                style="width:100%; height:45px;"><span
-                                    class="menutext">Activities</span></button></a></span>
-                    <span class="row"><a href="../reminders-html/index1.php"><button class="menu-button1"
-                                style="width:100%; height:45px;"><span class="menutext">
+                    <span class="row"><a href="../transactions-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">Transactions</span></button></a></span>
+                    <span class="row"><a href="../budget-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;" style="background-color:#65f9c5;"><span class="menutext">Budgets</span></button></a></span>
+                    <span class="row"><a href="../report-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">Report</span></button></a></span>
+                    <span class="row"><a href="../activities-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">Activities</span></button></a></span>
+                    <span class="row"><a href="../reminders-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">
                                     Reminders
                                 </span></button></a></span>
-                    <span class="row"><a href="../educate-html/index1.php"><button class="menu-button1"
-                                style="width:100%; height:45px;"><span
-                                    class="menutext">Educate</span></button></a></span>
-                    <span class="row"><a href="../help-html/index1.php"><button class="menu-button1"
-                                style="width:100%; height:45px;"><span class="menutext">Help</span></button></a></span>
-                    <span class="row"><a href="../shopping-html/index1.php"><button class="menu-button1"
-                                style="width:100%; height:45px;"><span class="menutext">Shopping
+                    <span class="row"><a href="../educate-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">Educate</span></button></a></span>
+                    <span class="row"><a href="../help-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">Help</span></button></a></span>
+                    <span class="row"><a href="../shopping-html/index1.php"><button class="menu-button1" style="width:100%; height:45px;"><span class="menutext">Shopping
                                     List</span></button></a></span>
                     <div><a href="../register.php"><span style="color: red; font-size: 20; ">Log Out</span></a></div>
                 </div>
             </div>
         </div>
         <div class="card">
-            <div class="container"
-                style="width:100%; background-color:#FFF8E7; border:solid #FFF8E7; border-radius:40px;">
-                <h1>Total Budget: <br>Rs.
-                    <?php
-                    $mysqli = new mysqli('localhost', 'root', '', 'safespend-2');
-                    $email = $_SESSION['user_name'];
-                    $query = "SELECT BID,Total_amount,Spent_amount from budget join keeps on BID=Budget_ID where Emailkeeps='$email' ";
-                    $result = $mysqli->query($query);
-                    $sumofremainingamount = 0;
-                    $sumofspentamount = 0;
-                    $sumoftotalamount = 0;
-                    while ($row = $result->fetch_assoc()) {
-                        $spent_amount = $row['Spent_amount'];
-                        $total_amount = $row['Total_amount'];
-                        $sumofspentamount += $spent_amount;
-                        $sumoftotalamount += $total_amount;
-                    }
-                    $sumofremainingamount = $sumoftotalamount - $sumofspentamount;
-                    echo $sumofremainingamount;
-                    ?> Remaining
-                </h1>
-                <h1>Total Budget: Rs.
-                    <?php echo $sumoftotalamount ?>
-                </h1>
-                <progress class="progressbar" value="<?php echo $sumofspentamount; ?>"
-                    max="<?php echo $sumoftotalamount; ?>"></progress>
-                <span>
-                    <?php
-                    if ($sumofspentamount < $sumoftotalamount)
-                        echo (int) ($sumofspentamount / $sumoftotalamount * 100) . '%';
-                    else if($sumofspentamount > $sumoftotalamount)
-                        echo "Exceeded the budget for this month";
-                    else
-                        echo "Budget Limit Reached";
-                    ?>
-                </span>
+
+            <div class="container " style="width:100%; background-color:#FFF8E7; border:solid #FFF8E7; border-radius:40px;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Total Budget: <br>Rs.
+                            <?php
+                            $mysqli = new mysqli('localhost', 'root', '', 'safespend-2');
+                            $email = $_SESSION['user_name'];
+                            $query = "SELECT BID,Total_amount,Spent_amount from budget join keeps on BID=Budget_ID where Emailkeeps='$email' ";
+                            $result = $mysqli->query($query);
+                            $sumofremainingamount = 0;
+                            $sumofspentamount = 0;
+                            $sumoftotalamount = 0;
+                            while ($row = $result->fetch_assoc()) {
+                                $spent_amount = $row['Spent_amount'];
+                                $total_amount = $row['Total_amount'];
+                                $sumofspentamount += $spent_amount;
+                                $sumoftotalamount += $total_amount;
+                            }
+                            $sumofremainingamount = $sumoftotalamount - $sumofspentamount;
+                            echo $sumofremainingamount;
+                            ?> Remaining
+                        </h1>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12"><progress class="progressbar" value="<?php echo $sumofspentamount; ?>" max="<?php echo $sumoftotalamount; ?>" style="width: 90%;"></progress>
+                        <span>
+                            <?php
+                            if ($sumofspentamount < $sumoftotalamount)
+                                echo (int) ($sumofspentamount / $sumoftotalamount * 100) . '%';
+                            else if ($sumofspentamount > $sumoftotalamount)
+                                echo "Exceeded the budget for this month";
+                            else
+                                echo "Budget Limit Reached";
+                            ?>
+                        </span>
+                    </div>
+
+                </div>
+
             </div>
             <?php
             $conn = new mysqli('localhost', 'root', '', 'safespend-2');
@@ -176,7 +167,7 @@ if (!isset($_SESSION['user_name']))
             $i = 0;
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
-                    ?>
+            ?>
                     <hr>
                     <?php
                     $spentamt = $row['Spent_amount'];
@@ -187,20 +178,33 @@ if (!isset($_SESSION['user_name']))
                     else
                         $percentage = 0;
                     $percentage = round($percentage, 2); ?>
-                    <span style="font-size:22px;">Category: <?php echo $category;?></span>
+                    <span style="font-size:22px;">Category: <?php echo $category; ?></span>
                     <div class="card" style="background-color:#FFF8E7; border:solid #FFF8E7; border-radius:40px; height:200px;">
 
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-4" style="display:flex; align-items:center;">
-                                    <h1>
-                                        <?php echo $spentamt . '/' . $totalamt; ?>
-                                    </h1>
-                                    <br />
+                                <div class="col-8" style="display:flex; align-items:center; margin-right: 0; margin-left: auto;">
+
+                                    <table style="text-align : left;">
+                                        <td>
+                                            <h1>
+                                                <?php echo $spentamt . '/' . $totalamt; ?>
+                                            </h1>
+                                            </tr>
+                                        <td>
+                                            <?php
+                                            if ($spentamt < $totalamt)
+                                                echo '<h3>' . (int) ($spentamt / $totalamt * 100) . '% Spent</h3>';
+                                            else
+                                                echo "<h5 style='color:red; font-size:18px;'>Exceeded the budget for this month</h5>";
+                                            ?>
+                                            </tr>
+                                    </table>
+
 
                                 </div>
 
-                                <div class="col-8">
+                                <div class="col-4">
                                     <canvas id="myChart<?php echo $i; ?>" style="max-width:600px;"></canvas>
 
                                     <script>
@@ -233,18 +237,20 @@ if (!isset($_SESSION['user_name']))
                                                 },
                                             },
                                         });
-
                                     </script>
                                 </div>
                             </div>
                             <div class="row">
 
+                                <!--
                                 <?php
                                 if ($spentamt < $totalamt)
-                                    echo '<h3>' . (int) ($spentamt / $totalamt * 100) . '% Spent</h3>';
+                                    echo '<h3 style="font-size: 15%;">' . (int) ($spentamt / $totalamt * 100) . "% Spent</h3>";
                                 else
-                                    echo "<h5 style='color:red; font-size:18px;'>Exceeded the budget for this month</h5>";
+                                    echo "<h5 style='color:red; font-size: 15%;'>Exceeded the budget for this month</h5>";
                                 ?>
+                            -->
+
 
 
 
@@ -263,14 +269,12 @@ if (!isset($_SESSION['user_name']))
                     </h3> -->
 
                     </div>
-                    <?php
+                <?php
                     $i++;
-
-
                 }
                 ?>
 
-                <?php
+            <?php
                 echo '<hr>';
             }
             ?>
@@ -326,7 +330,7 @@ if (!isset($_SESSION['user_name']))
 
                             echo '<td>' . "Rs. " . $field4name . '</td> 
                                     <td>' . $field5name . '</td> ';
-                            ?>
+                    ?>
                             <td><input type="checkbox" name="budget_delete_id[]" value="<?= $field1name; ?>"></td>
                             </tr>
                             <?php
@@ -334,7 +338,7 @@ if (!isset($_SESSION['user_name']))
 
                         $result->free();
                     }
-                    ?>
+                            ?>
                 </table>
             </div> -->
         </div>
