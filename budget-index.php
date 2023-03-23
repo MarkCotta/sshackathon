@@ -15,11 +15,11 @@ if (!isset($_SESSION['user_name']))
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="bootstrap/fonts/bootstrap-icons.css" type="text/css">
 
-
     <script type="text/javascript" src="bootstrap/js/jquery-3.6.1.min.js"></script>
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
         .Progress {
             color: rgb(0, 0, 0);
@@ -44,6 +44,7 @@ if (!isset($_SESSION['user_name']))
         .container-sm {
             max-width: 50%;
         }
+
     </style>
 </head>
 
@@ -53,6 +54,10 @@ if (!isset($_SESSION['user_name']))
             aria-controls="offcanvasExample">
             Menu
         </a>
+        <!-- <button class="js-push-btn" style="display: none;">
+        Subscribe Push Messaging
+        </button>
+        <script src="main.js"></script> -->
 
         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
             aria-labelledby="offcanvasExampleLabel">
@@ -90,8 +95,12 @@ if (!isset($_SESSION['user_name']))
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="card">
+            <div class="container"
+                style="width:100%; max-width:500px; background-color:lightblue; border:solid lightblue; border-radius:10px;">
+                <canvas id="myChart<?php echo $i; ?>" style=""></canvas>
 
+            </div>
             <?php
             $conn = new mysqli('localhost', 'root', '', 'safespend-2');
             $var = $_SESSION['user_name'];
@@ -111,7 +120,52 @@ if (!isset($_SESSION['user_name']))
                     else
                         $percentage = 0;
                     $percentage = round($percentage, 2); ?>
-                    <h3>
+
+                    <div class="card"
+                        style="background-color:lightblue; border:solid lightblue; border-radius:10px; height:200px;">
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4" style="display:flex; align-items:center;">
+                                    <h3>
+                                        <?php echo $spentamt . '/' . $totalamt; ?>
+                                    </h3>
+                                </div>
+                                <div class="col-8">
+                                    <canvas id="myChart<?php echo $i; ?>" style="max-width:600px;"></canvas>
+
+                                    <script>
+                                        var xValues = ["Spent", "Remaining"];
+
+                                        var yValues = ["<?php echo $spentamt; ?>", "<?php echo ($totalamt - $spentamt); ?>"]
+                                        var barColors = ["#E21818", "#804374"];
+                                        new Chart("myChart<?php echo $i; ?>", {
+                                            type: "pie",
+                                            data: {
+                                                labels: xValues,
+                                                datasets: [
+                                                    {
+                                                        backgroundColor: barColors,
+                                                        data: yValues,
+                                                    },
+                                                ],
+                                            },
+                                            options: {
+                                                responsive: true,
+                                                maintainAspectRatio: false,
+                                                title: {
+                                                    display: true,
+                                                    text: "<?php echo $category; ?>",
+                                                },
+
+                                            },
+                                        });
+
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <h3>
 
                         <?php
                         if ($spentamt > $totalamt) {
@@ -121,107 +175,85 @@ if (!isset($_SESSION['user_name']))
                             echo '<progress class="progressbar" value="' . $spentamt . '" max="' . $totalamt . '"></progress>';
                         }
                         ?>
-                    </h3>
-                    <div class="container">
-                    <canvas id="myChart<?php echo $i; ?>" style="width:110%; max-width:500px; background-color:lightblue; border:solid black; border-radius:10px;"></canvas>
-                    <script>
-                        var xValues = ["Spent Amount: <?php echo $spentamt; ?>", "Remaining Amount: <?php echo ($totalamt - $spentamt); ?>"];
+                    </h3> -->
 
-                        var yValues = ["<?php echo $spentamt; ?>", "<?php echo ($totalamt - $spentamt); ?>"]
-                        var barColors = ["#E21818", "#804374"];
-                        new Chart("myChart<?php echo $i; ?>", {
-                            type: "pie",
-                            data: {
-                                labels: xValues,
-                                datasets: [
-                                    {
-                                        backgroundColor: barColors,
-                                        data: yValues,
-                                    },
-                                ],
-                            },
-                            options: {
-                                title: {
-                                    display: true,
-                                    text: "<?php echo $category; ?>",
-                                },
-                            },
-                        });
-
-                    </script>
                     </div>
                     <?php
                     $i++;
 
+
                 }
+                ?>
+
+                <?php
                 echo '<hr width="90%">';
             }
             ?>
-            <div class="container" style="margin:0%;">
-        <table border="5" cellspacing="2" cellpadding="2" width="70%" 
-            style="border:5px solid black; border-radius:10px;">
-            <tr height="60px">
-                <th bgcolor="#AEF28A">
-                    <font face="Arial">Budget ID</font>
-                    </td>
-                <th bgcolor="#AEF28A" width="20%">
-                    <font face="Arial">Total Amount</font>
-                    </td>
-                <th bgcolor="#AEF28A" width="22%">
-                    <font face="Arial">Spent Amount</font>
-                    </td>
-                <th bgcolor="#AEF28A">
-                    <font face="Arial">Remaining Amount</font>
-                    </td>
-                <th bgcolor="#AEF28A">
-                    <font face="Arial">Category</font>
-                    </td>
-                <th bgcolor="#AEF28A">
-                    <font face="Arial"><button type="submit" name="budget_delete_multiple_btn"
-                            style="width: 100px;height: 30px;background-color: red;border-radius: 10px;border-color: #f5f5fb;">Delete</button>
-                    </font>
-                </th>
-            </tr>
-            <?php
-            $mysqli = new mysqli('localhost', 'root', '', 'safespend-2');
-            $var = $_SESSION['user_name'];
-            $query = "SELECT * FROM budget join keeps on BID = Budget_ID where Emailkeeps = '$var'";
+            <!-- <div class="container" style="margin:0%;">
+                <table border="5" cellspacing="2" cellpadding="2" width="70%"
+                    style="border:5px solid black; border-radius:10px;">
+                    <tr height="60px">
+                        <th bgcolor="#AEF28A">
+                            <font face="Arial">Budget ID</font>
+                            </td>
+                        <th bgcolor="#AEF28A" width="20%">
+                            <font face="Arial">Total Amount</font>
+                            </td>
+                        <th bgcolor="#AEF28A" width="22%">
+                            <font face="Arial">Spent Amount</font>
+                            </td>
+                        <th bgcolor="#AEF28A">
+                            <font face="Arial">Remaining Amount</font>
+                            </td>
+                        <th bgcolor="#AEF28A">
+                            <font face="Arial">Category</font>
+                            </td>
+                        <th bgcolor="#AEF28A">
+                            <font face="Arial"><button type="submit" name="budget_delete_multiple_btn"
+                                    style="width: 100px;height: 30px;background-color: red;border-radius: 10px;border-color: #f5f5fb;">Delete</button>
+                            </font>
+                        </th>
+                    </tr>
+                    <?php
+                    $mysqli = new mysqli('localhost', 'root', '', 'safespend-2');
+                    $var = $_SESSION['user_name'];
+                    $query = "SELECT * FROM budget join keeps on BID = Budget_ID where Emailkeeps = '$var'";
 
-            echo '';
+                    echo '';
 
-            if ($result = $mysqli->query($query)) {
-                while ($row = $result->fetch_assoc()) {
-                    $field1name = $row["BID"];
-                    $field2name = (int) $row["Total_amount"];
-                    $field3name = (int) $row["Spent_amount"];
-                    $field4name = $field2name - $field3name;
-                    $field5name = $row["category"];
-                    echo '<tr> 
+                    if ($result = $mysqli->query($query)) {
+                        while ($row = $result->fetch_assoc()) {
+                            $field1name = $row["BID"];
+                            $field2name = (int) $row["Total_amount"];
+                            $field3name = (int) $row["Spent_amount"];
+                            $field4name = $field2name - $field3name;
+                            $field5name = $row["category"];
+                            echo '<tr> 
                                     <td>' . $field1name . '</td> 
                                     <td>' . "Rs. " . $field2name . '</td> ';
 
-                    if ($field2name < $field3name)
-                        echo '<td bgcolor="red">' . "Rs. " . $field3name . '</td> ';
-                    else if (($field3name > ((8 / 10) * $field2name)) && ($field3name <= $field2name))
-                        echo '<td bgcolor="#FFA600">' . "Rs. " . $field3name . '</td> ';
-                    else
-                        echo '<td bgcolor="#8EFF00">' . "Rs. " . $field3name . '</td> ';
+                            if ($field2name < $field3name)
+                                echo '<td bgcolor="red">' . "Rs. " . $field3name . '</td> ';
+                            else if (($field3name > ((8 / 10) * $field2name)) && ($field3name <= $field2name))
+                                echo '<td bgcolor="#FFA600">' . "Rs. " . $field3name . '</td> ';
+                            else
+                                echo '<td bgcolor="#8EFF00">' . "Rs. " . $field3name . '</td> ';
 
-                    echo '<td>' . "Rs. " . $field4name . '</td> 
+                            echo '<td>' . "Rs. " . $field4name . '</td> 
                                     <td>' . $field5name . '</td> ';
-                    ?>
-                    <td><input type="checkbox" name="budget_delete_id[]" value="<?= $field1name; ?>"></td>
-                    </tr>
-                    <?php
-                }
+                            ?>
+                            <td><input type="checkbox" name="budget_delete_id[]" value="<?= $field1name; ?>"></td>
+                            </tr>
+                            <?php
+                        }
 
-                $result->free();
-            }
-            ?>
-        </table>
+                        $result->free();
+                    }
+                    ?>
+                </table>
+            </div> -->
         </div>
-        </div>
-        
+
     </div>
 </body>
 
