@@ -32,7 +32,7 @@ if (!isset($_SESSION['user_name']))
 </head>
 
 <body>
-<link rel="stylesheet" href="addbudget.css">
+<link rel="stylesheet" href="css/addbudget.css">
     <div class="popup">
         <a href="budget-index.php"><button id="close" class="closebutton" style="width:80px; height:80px;">&times;</button></a>
         <h1 style="font-weight:700; font-size: 35;">Add a Budget</h1>
