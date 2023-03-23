@@ -33,8 +33,30 @@ TemplateMo 567 Nomad Force
 https://templatemo.com/tm-567-nomad-force
 
 -->
-<script src = "https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js" > </script> 
-<script src = "https://www.gstatic.com/firebasejs/8.3.2/firebase-analytics.js" > </script>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyAJ-v10cFQ0qDr7r8NH5rsh5cnuAx8FJXo",
+    authDomain: "safe-spend.firebaseapp.com",
+    projectId: "safe-spend",
+    storageBucket: "safe-spend.appspot.com",
+    messagingSenderId: "315089001979",
+    appId: "1:315089001979:web:c10e376cdb32043f22bf5e",
+    measurementId: "G-KFXYMH1Y4Q"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 </head>
 
 <body style="font-family: 'Poppins', sans-serif;">
@@ -140,12 +162,17 @@ https://templatemo.com/tm-567-nomad-force
 
           <div class="col-lg-3 col-12 " style="background-color: aliceblue;">
             <div class="d-flex flex-column flex-wrap justify-content-center h-100 py-5 px-4 pt-lg-4 pb-lg-0">
-              <h3 class="text-black mb-3" data-aos="fade-up">From financial to mental bliss</h3>
+              <h3 class="text-black mb-3" data-aos="fade-up">.</h3>
 
-              <p class="text-black-50" data-aos="fade-up">We've got your back, regardless</p>
+              <p class="text-black-50" data-aos="fade-up">Over six years in the video business</p>
 
               <div class="mt-3 custom-links">
 
+                <a href="#news" class="text-white custom-link" data-aos="zoom-in" data-aos-delay="100">Read News &
+                  Events</a>
+
+                <a href="#contact" class="text-white custom-link" data-aos="zoom-in" data-aos-delay="300">Work with
+                  Us</a>
               </div>
 
             </div>
@@ -388,18 +415,70 @@ https://templatemo.com/tm-567-nomad-force
       <div class="container">
         <div class="row">
 
-          <div class="col-md-12 col-12 " style="background-image: url('./images/bg1.png');background-size: 100%;background-repeat:no-repeat; height:auto;width: 100%; ">
-            <div class="d-flex flex-column flex-wrap justify-content-center h-100 py-5 px-4 pt-lg-4 pb-lg-0">
-              <h3 class="text-black mb-3" data-aos="fade-up">From financial to mental bliss</h3>
+          <div class="col-lg-7 col-12 mx-auto">
 
-              <p class="text-black-50" data-aos="fade-up">We've got your back, regardless</p>
+            <h2 class="mb-4 text-center" data-aos="fade-up">Dont' be shy, write to us</h2>
 
-              <div class="mt-3 custom-links">
+            <form action="#" method="post" class="contact-form" role="form" data-aos="fade-up">
 
+              <div class="row">
+
+                <div class="col-lg-6 col-6">
+                  <label for="name" class="form-label">Name <sup class="text-danger">*</sup></label>
+
+                  <input type="text" name="name" id="name" class="form-control" placeholder="Full name" required>
+                </div>
+
+                <div class="col-lg-6 col-6">
+                  <label for="email" class="form-label">Email <sup class="text-danger">*</sup></label>
+
+                  <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control"
+                    placeholder="Email address" required>
+                </div>
+
+                <div class="col-12 my-4">
+                  <label for="message" class="form-label">How can we help?</label>
+
+                  <textarea name="message" rows="6" class="form-control" id="message"
+                    placeholder="Tell us about the project" required></textarea>
+
+                </div>
+
+                <div class="col-12">
+                  <label for="services" class="form-label">Services<sup class="text-danger">*</sup></label>
+                </div>
+
+                <div class="col-lg-4 col-12">
+                  <div class="form-check">
+                    <input type="checkbox" id="checkbox1" name="checkbox1" class="form-check-input">
+
+                    <label class="form-check-label" for="checkbox1">Branding</label>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 col-12 my-2 my-lg-0">
+                  <div class="form-check">
+                    <input type="checkbox" id="checkbox2" name="checkbox2" class="form-check-input">
+
+                    <label class="form-check-label" for="checkbox2">Digital Experiences</label>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 col-12">
+                  <div class="form-check">
+                    <input type="checkbox" id="checkbox3" name="checkbox3" class="form-check-input">
+
+                    <label class="form-check-label" for="checkbox3">Web Development</label>
+                  </div>
+                </div>
               </div>
 
-            </div>
+              <div class="col-lg-5 col-12 mx-auto mt-5">
+                <button type="submit" class="form-control">Send Message</button>
+              </div>
+            </form>
           </div>
+
         </div>
       </div>
     </section>
@@ -409,15 +488,14 @@ https://templatemo.com/tm-567-nomad-force
         <div class="row">
           <div class="col-md-12 text-center">
             <h2 class="section-title">Join us</h2>
-            <button onclick="location.href='./register.php'" class="btn btn-primary btn-lg"
-              style="background-color: #FBFFB1; color: black; border-radius: 10px; border-color: #FBFFB1;">Register</button>
+            <button onclick="location.href='./register.php'" class="btn btn-primary btn-lg" style="background-color: #FBFFB1; color: black; border-radius: 10px; border-color: #FBFFB1;" >Register</button>
           </div>
         </div>
       </div>
     </section>
+    
 
-
-
+    
 
   </main>
   <!--
@@ -468,7 +546,7 @@ https://templatemo.com/tm-567-nomad-force
   <script src="js/magnific-popup-options.js"></script>
   <script src="js/scrollspy.min.js"></script>
   <script src="js/custom.js"></script>
-  <!-- <script>
+  <script>
     if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js')
     .then(function(registration) {
@@ -504,75 +582,9 @@ firebase.messaging().onMessage(function(payload) {
     registration.showNotification(notificationTitle, notificationOptions);
   });
 });
-const messaging = firebase.messaging();
-getToken(messaging,{vapidKey: "BJS2U8jjqqL0iM-OqMdjlNRd671nkb8BjC74IdiSryPyoq4yCY4qmO_Z-JGRRGbS3Ze20aJDXH43QZSXLn9hsrE"});
-function requestPermission(){
-  console.log('Requesting permission...');
 
-Notification.requestPermission().then((permission) => {
-  if(permission == 'granted'){
-    console.log('Notification permission granted.');
-  }
-  
-}).catch((err) => {
-  console.log('Unable to get permission to notify.', err);
-});
-}
-messaging.getToken({vapidKey:"BJS2U8jjqqL0iM-OqMdjlNRd671nkb8BjC74IdiSryPyoq4yCY4qmO_Z-JGRRGbS3Ze20aJDXH43QZSXLn9hsrE"}).then((currentToken) => {
-  if (currentToken) {
-    console.log('Registration token:', currentToken);
-  } else {
-    console.log('No registration token available.');
-  }
-}).catch((err) => {
-  console.log('An error occurred while retrieving the registration token.', err);
-});
-const notification = {
-  title: 'SafeSpend',
-  body: 'You have a new message!',
-  icon: '/images/app-logo.png',
-};
-
-messaging.send({
-  data: notification,
-  token: currentToken,
-}).then(() => {
-  console.log('Push notification sent successfully.');
-}).catch((err) => {
-  console.log('An error occurred while sending the push notification.', err);
-});
-
-  </script> -->
-  <script>
-      // Handle incoming messages. Called when:
-  // - a message is received while the app has focus
-  // - the user clicks on an app notification created by a service worker
-  //   `messaging.onBackgroundMessage` handler.
-  messaging.onMessage((payload) => {
-    console.log('Message received. ', payload);
-    // ...
-  });
-
-https://fcm.googleapis.com//v1/projects/safe-spend/messages:send
-Content-Type: application/json
-Authorization: bearer <'BJS2U8jjqqL0iM-OqMdjlNRd671nkb8BjC74IdiSryPyoq4yCY4qmO_Z-JGRRGbS3Ze20aJDXH43QZSXLn9hsrE'>
-
-{
-  "message": {
-    "token": "BJS2U8jjqqL0iM-OqMdjlNRd671nkb8BjC74IdiSryPyoq4yCY4qmO_Z-JGRRGbS3Ze20aJDXH43QZSXLn9hsrE",
-    "notification": {
-      "title": "SafeSpend",
-      "body": "You have a new message!"
-    },
-    "webpush": {
-      "fcm_options": {
-        "link": "https://dummypage.com"
-      }
-    }
-  }
-}
   </script>
-
+  
 </body>
 
 </html>
