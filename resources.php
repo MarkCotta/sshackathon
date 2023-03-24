@@ -113,6 +113,7 @@ if (!isset($_SESSION['user_name']))
             <div>
                 <a href="budget-index.php" class="nav-menu-item"><i class="fas fa-home me-3"></i>Home</a>
                 <a href="transaction-index.php" class="nav-menu-item"><i class="fab fa-dollar-sign me-3"></i>Transaction History</a>
+                <a href="./resources.php" class="nav-menu-item"><i class="fas fa-file-alt me-3"></i>Resources</a>
                 <a href="index.html" class="nav-menu-item"><i class="fab me-3"></i>Log out</a>
                 <!--
                 <a href="#" class="nav-menu-item"><i class="fas fa-search me-3"></i>Explore</a>

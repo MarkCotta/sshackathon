@@ -83,7 +83,8 @@ if (!isset($_SESSION['user_name']))
             <div role="navigation" class="sticky-top border-bottom border-top" id="mainNavigation">
                 <div class="flexMain">
                     <div class="flex2">
-                        <button class="whiteLink siteLink" style="border-right:1px solid #eaeaea" onclick="menuToggle()"><i class="fas fa-bars me-2"></i> MENU</button>
+                        <button class="whiteLink siteLink" style="border-right:1px solid #eaeaea"
+                            onclick="menuToggle()"><i class="fas fa-bars me-2"></i> MENU</button>
                     </div>
                     <div class="flex3 text-center" id="siteBrand" style="font-family:'Poppins', sans-serif">
                         Transactions
@@ -111,7 +112,8 @@ if (!isset($_SESSION['user_name']))
                 </div>
                 <div>
                     <a href="budget-index.php" class="nav-menu-item"><i class="fas fa-home me-3"></i>Home</a>
-                    <a href="transaction-index.php" class="nav-menu-item"><i class="fab fa-dollar-sign me-3"></i>Transaction History</a>
+                    <a href="transaction-index.php" class="nav-menu-item"><i
+                            class="fab fa-dollar-sign me-3"></i>Transaction History</a>
                     <a href="./resources.php" class="nav-menu-item"><i class="fas fa-file-alt me-3"></i>Resources</a>
                     <a href="index.html" class="nav-menu-item"><i class="fab me-3"></i>Log out</a>
                     <!--
@@ -163,53 +165,58 @@ if (!isset($_SESSION['user_name']))
     -->
             <div class="card">
 
+                <form action='code.php' method='post'>
+                    <?php
+                    $conn = new mysqli('localhost', 'root', '', 'safespend-2');
+                    $var = $_SESSION['user_name'];
+                    $sql = "SELECT * from transaction join performs on TID=Transaction_ID where emailperforms='$var' order by TID desc";
+                    $result = mysqli_query($conn, $sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            ?>
+                            <hr>
+                            <?php
+                            $category = $row['category'];
+                            $amount = $row['Amount'];
+                            $type = $row['Type'];
+                            $id = $row['TID'];
+                            ?>
+                            <center>
+                                <div class="card"
+                                    style="background-color:#FFF8E7; border:solid #FFF8E7; border-radius:10px; height:35px;">
+                                    <div class="row">
+                                        <div class="col">
+                                            <?php
 
-                <?php
-                $conn = new mysqli('localhost', 'root', '', 'safespend-2');
-                $var = $_SESSION['user_name'];
-                $sql = "SELECT * from transaction join performs on TID=Transaction_ID where emailperforms='$var' order by TID desc";
-                $result = mysqli_query($conn, $sql);
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                ?>
-                        <hr>
-                        <?php
-                        $category = $row['category'];
-                        $amount = $row['Amount'];
-                        $type = $row['Type'];
-                        ?>
-                        <center>
-                            <div class="card" style="background-color:#FFF8E7; border:solid #FFF8E7; border-radius:10px; height:35px;">
-                                <div class="row">
-                                    <div class="col">
-                                        <?php
+                                            echo $category;
 
-                                        echo $category;
+                                            ?>
+                                        </div>
+                                        <div class="col">
+                                            <?php
+                                            if ($type == 'Debit')
+                                                echo '<span style="color:#FF7777">-' . $amount . '</span>';
+                                            else
+                                                echo '<span style="color:#98DFD6">+' . $amount . '</span>';
+                                            ?>
 
-                                        ?>
-                                    </div>
-                                    <div class="col">
-                                        <?php
-                                        if ($type == 'Debit')
-                                            echo '<span style="color:#FF7777">-' . $amount . '</span>';
-                                        else
-                                            echo '<span style="color:#98DFD6">+' . $amount . '</span>';
-                                        ?>
-
+                                        </div>
+                                        <button type='submit' class='btn btn-danger' name='transaction_delete_id'
+                                            value='<?php echo $id; ?>'
+                                            style="position:relative;top:-4px; width:100px;">Delete</button>
                                     </div>
                                 </div>
-                            </div>
-                        </center>
-                    <?php
+                            </center>
+                            <?php
+                        }
+                        ?>
+
+                        <?php
+                        echo '<hr>';
                     }
                     ?>
-
-                <?php
-                    echo '<hr>';
-                }
-                ?>
-                <!-- <div class="container" style="margin:0%;">
-                <table border="5" cellspacing="2" cellpadding="2" width="70%"
+                    <!-- <div class="container" style="margin:0%;">
+                    <table border="5" cellspacing="2" cellpadding="2" width="70%"
                     style="border:5px solid black; border-radius:10px;">
                     <tr height="60px">
                         <th bgcolor="#AEF28A">
@@ -260,7 +267,7 @@ if (!isset($_SESSION['user_name']))
 
                             echo '<td>' . "Rs. " . $field4name . '</td> 
                                     <td>' . $field5name . '</td> ';
-                    ?>
+                            ?>
                             <td><input type="checkbox" name="budget_delete_id[]" value="<?= $field1name; ?>"></td>
                             </tr>
                             <?php
@@ -268,9 +275,10 @@ if (!isset($_SESSION['user_name']))
 
                         $result->free();
                     }
-                            ?>
-                </table>
-            </div> -->
+                    ?>
+                    </table>
+                    </div> -->
+                </form>
             </div>
 
         </div>
@@ -286,7 +294,7 @@ if (!isset($_SESSION['user_name']))
                 else menuHolder.className = "drawMenu"
             }
             if (window.innerWidth < 426) siteBrand.innerHTML = "Transactions"
-            window.onresize = function() {
+            window.onresize = function () {
                 if (window.innerWidth < 420) siteBrand.innerHTML = "Transactions"
                 else siteBrand.innerHTML = "Transactions"
             }

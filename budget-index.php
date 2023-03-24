@@ -221,7 +221,7 @@ if (!isset($_SESSION['user_name']))
                     </button>
                 </a>
             </div>
-
+            <form action = 'code2.php' method='post'>
             <?php
             $conn = new mysqli('localhost', 'root', '', 'safespend-2');
             $var = $_SESSION['user_name'];
@@ -232,6 +232,7 @@ if (!isset($_SESSION['user_name']))
                 while ($row = mysqli_fetch_assoc($result)) {
             ?>
                     <?php
+                    $id = $row['BID'];
                     $spentamt = $row['Spent_amount'];
                     $totalamt = $row['Total_amount'];
                     $category = $row['category'];
@@ -303,7 +304,9 @@ if (!isset($_SESSION['user_name']))
                                 </div>
                             </div>
                             <div class="row">
-
+                            
+                                    <button type='submit' class='btn btn-danger' name='budget_delete_id' value='<?php echo $id;?>' style="position:relative;top:-25px; width:100px;">Delete</button>
+                                    
                                 <!--
                                 <?php
                                 if ($spentamt < $totalamt)
@@ -311,6 +314,7 @@ if (!isset($_SESSION['user_name']))
                                 else
                                     echo "<h5 style='color:red; font-size: 15%;'>Exceeded the budget for this month</h5>";
                                 ?>
+
                             -->
 
 
@@ -339,7 +343,9 @@ if (!isset($_SESSION['user_name']))
             <?php
                 echo '<hr>';
             }
+            
             ?>
+            </form>
         </div>
 
     </div>
