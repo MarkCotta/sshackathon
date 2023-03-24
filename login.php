@@ -7,136 +7,50 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap2/css/bootstrap.min.css" type="text/css">
+        <script type="text/javascript" src="bootstrap2/js/jquery-3.5.1.min.js"></script>
+        <script type="text/javascript" src="bootstrap2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="bootstrap/fonts/bootstrap-icons.css" type="text/css">
+        <link rel="stylesheet" type="text/css" href="css/reg.css">
+        <script type="text/javascript" src="bootstrap/js/jquery-3.6.1.min.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Stylesheet-->
     <style media="screen">
-      *,
-*:before,
-*:after{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-body{
-    background-color: #e5e5e5;
-    font-size: 40px;
-}
-.background{
-    width: 430px;
-    height: 520px;
-    position: absolute;
-    transform: translate(-50%,-50%);
-    left: 50%;
-    top: 50%;
-}
-.background .shape{
-    height: 200px;
-    width: 200px;
-    position: absolute;
-    border-radius: 50%;
-}
-.shape:first-child{
-    background: linear-gradient(
-        green,
-        #B8A52A
-    );
-    left: -80px;
-    top: -80px;
-}
-.shape:last-child{
-    background: linear-gradient(
-        to right,
-        #ff512f,
-        #f09819
-    );
-    right: -30px;
-    bottom: -80px;
-}
-form{
-    height: 50%;
-    width: 60%;
-    background-color: rgba(51, 255, 61, 0.22);
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 50%;
-    left: 50%;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255,255,255,0.1);
-    box-shadow: 0 0 40px rgba(8,7,16,0.6);
-    padding: 50px 35px;
-}
-form *{
-    font-family: 'Poppins',sans-serif;
-    color: #080710;
-    letter-spacing: 0.5px;
-    outline: none;
-    border: none;
-}
-form h3{
-    font-size: 32px;
-    font-weight: 500;
-    line-height: 42px;
-    text-align: center;
-}
-
-label{
-    display: block;
-    margin-top: 30px;
-    font-size: 16px;
-    font-weight: 500;
-}
-input{
-    display: block;
-    height: 50px;
-    width: 100%;
-    background-color: rgba(44, 66, 45, 0.22);
-    border-radius: 3px;
-    padding: 0 10px;
-    margin-top: 8px;
-    font-size: 14px;
-    font-weight: 300;
-}
-::placeholder{
-    color: #e5e5e5;
-}
-button{
-    margin-top: 50px;
-    width: 100%;
-    background-color: green;
-    color: #080710;
-    padding: 15px 0;
-    font-size: 18px;
-    font-weight: 600;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.social{
-  margin-top: 30px;
-  display: flex;
-}
-.social div{
-  background: red;
-  width: 150px;
-  border-radius: 3px;
-  padding: 5px 10px 10px 5px;
-  background-color: rgba(42, 66, 43, 0.22);
-  color: #eaf0fb;
-  text-align: center;
-}
-.social div:hover{
-  background-color: rgba(255,255,255,0.47);
-}
-.social .fb{
-  margin-left: 25px;
-}
-.social i{
-  margin-right: 4px;
-}
-
+      body{
+                font-family: 'Poppins', sans-serif;
+                background-color: #98DFD6;
+            }
+            .btn{
+                font-size: 24px;
+                border-color:#E21818;
+                border:1;
+                background-color:#fff;
+           
+                color: #E21818;
+                height: auto;
+            }
+            .btn.focus, .btn:focus, .btn:hover {
+            color: #fff;
+            text-decoration: none;
+            background-color:#E21818;
+            }
+            .field-icon {
+            float: right;
+            margin-right: 140px;
+            margin-top: -25px;
+            position: relative;
+            z-index: 1;
+            }
+            .red{
+                color: red;
+            }
+           
     </style>
 </head>
 <body>
-    <div class="background">
+    <!-- <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
@@ -163,7 +77,47 @@ button{
         <div class="social">
     <div class="fb" style="margin: auto; width:auto"><a href = "./register.php">New user? Register here</a></div>
     </div>
-    </form>
+    </form> -->
+    <br><br><br><br><br><br> 
+    <div class="container">
+                <div class="row">
+                    <div class="colcol-xs-offset-3">
+                        <div class="panel">                  
+                            <div class="panel-heading">
+                                <h2 style="text-align:center">LOGIN</h2>
+                            </div>
+                            <div class="panel-body">
+                                <center>
+                                
+                                <form action="loginpost.php" method = "POST">
+                                <?php if (isset($_GET['error'])) { ?>
+
+                                <p class="error">
+                                 <?php echo $_GET['error']; ?>
+                                </p><?php } ?>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" name="uname" placeholder="Email" required> 
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control"  id="password" name="password" placeholder="Password" pattern=".{6,}" required>
+                                        <!-- <i class="bi bi-eye" id="togglePassword" style="cursor:pointer"></i> -->
+                                        
+                                    </div>
+                                    
+                                    <button type="submit" value="Upload" class="btn">LOGIN</button><br>
+
+                                </form> 
+                                </center>
+                            </div>
+                            <br><br><br>
+                            <div class="panel-footer">
+                                <center> Don't have an account? <a href="login.php" style="color:#00235B">Register here</a></center>
+                            </div>     
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
     
 </body>
 </html>

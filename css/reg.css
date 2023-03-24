@@ -1,6 +1,6 @@
 body{
     margin-top:20px;
-    background:#eee;
+    background:#FFEBB4;
 }
 .container{
 width:90%;
@@ -9,7 +9,7 @@ overflow: hidden;
 display:block; 
 }
 .navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover {
-    color: #e62272;
+    color: #E21818;
     background-color: transparent;
 }
 .navbar-inverse .navbar-brand {
@@ -21,13 +21,13 @@ display:block;
 }
 .panel {
     margin-bottom: 20px;
-    background-color: #fff;
+    background-color: #FFEBB4;
     border: 1px solid transparent;
-    border-radius: 4px;
-    box-shadow: 0 7px 7px 0px rgba(0,0,0,0.9);
+    border-radius: 10px;
+    box-shadow: 0 2px 2px 0px rgba(0,0,0,0.1);
 }
 .panel-heading{
-    color:#e62272;
+    color:#E21818;
     border-bottom: 2px solid transparent;
 }
 .form-control{
@@ -48,3 +48,6 @@ width:100%;
             position: absolute;
             z-index: 2;
             }
+.panel-footer{
+    color: #E21818;
+}

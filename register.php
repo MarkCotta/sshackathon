@@ -17,21 +17,21 @@
         <style>
             body{
                 font-family: 'Poppins', sans-serif;
-                background-color: #333333;
+                background-color: #98DFD6;
             }
             .btn{
                 font-size: 24px;
-                border-color:#e62272;
+                border-color:#E21818;
                 border:1;
                 background-color:#fff;
            
-                color: #e62272;
+                color: #E21818;
                 height: auto;
             }
             .btn.focus, .btn:focus, .btn:hover {
             color: #fff;
             text-decoration: none;
-            background-color:#e62272;
+            background-color:#E21818;
             }
             .field-icon {
             float: right;
@@ -46,7 +46,7 @@
         </style>
     </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top">
+        <!-- <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -63,8 +63,8 @@
                     </ul>
                 </div>    
             </div>
-        </nav>
-        <br><br><br><br><br><br>
+        </nav>-->
+        <br><br><br><br><br><br> 
             <div class="container">
                 <div class="row">
                     <div class="colcol-xs-offset-3">
@@ -113,7 +113,7 @@
                             </div>
                             <br><br><br>
                             <div class="panel-footer">
-                                <center> Already have an account? <a href="login.php">Login</a></center>
+                                <center> Already have an account? <a href="login.php" style="color:#00235B">Login</a></center>
                             </div>     
                         </div>
                     </div>
