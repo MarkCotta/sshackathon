@@ -33,10 +33,11 @@ if (!isset($_SESSION['user_name']))
 
 <body>
 <link rel="stylesheet" href="css/addbudget.css">
-    <div class="popup">
+    <div class="popup container">
         <a href="budget-index.php"><button id="close" class="closebutton" style="width:80px; height:80px;">&times;</button></a>
         <h1 style="font-weight:700; font-size: 35;">Add a Budget</h1>
         <br />
+        <div class="container">
         <form action="budgetconnect.php" method="post">
             <span style="font-weight: 600;">Amount</span><br><input type="number" placeholder="Amount" id="amount"
                 name="amount" min=1><br><br>
@@ -54,6 +55,7 @@ if (!isset($_SESSION['user_name']))
             <br><br>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+</div>
     </div>
     <!--Script-->
     <script type="text/javascript">
