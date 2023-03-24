@@ -12,7 +12,6 @@ $mysqli = new mysqli('localhost', 'root', '', 'safespend-2');
 if ($mysqli->connect_error) {
     die('Connection Failed: ' . $mysqli->connect_error);
 } else {
-    session_start();
     $email = $_SESSION['user_name'];
     $query = "SELECT max(TID) FROM transaction";
     if ($result = $mysqli->query($query)) {

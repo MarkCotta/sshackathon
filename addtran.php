@@ -41,7 +41,7 @@ if (!isset($_SESSION['user_name']))
 </head>
 
 <body>
-    <div class="popup form">
+    <div class="popup form" style="height:50%;">
         <div class=" row g-2" style="padding-top:10%; font-size:75%;">
             <div class="col-md-8 offset-1">
                 <h1 style="font-weight:400%; font-size: 350%;">Add a Transaction</h1>
@@ -52,7 +52,7 @@ if (!isset($_SESSION['user_name']))
 
 
         <br />
-        <form action="connect.php" method="post" style="margin-top:10%;">
+        <form action="connect.php" method="post" style="height:65%;">
             <div class="row">
 
             </div>
@@ -68,19 +68,27 @@ if (!isset($_SESSION['user_name']))
                 </select>
             </div>
             <div class="mb-3">
+                <label for="mode-of-payment" class="form-label">Category</label>
+                <select id="mode-of-payment" name="mode-of-payment">
+                    <option value="Cash">Cash</option>
+                    <option value="GPay">Gpay</option>
+                    <option value="Card">Card</option>
+                </select>
+            </div>
+            <div class="mb-3">
                 <label for="category" class="form-label">Category</label>
                 <select id="category" name="category">
-                <option value="General">General</option>
-                <option value="Transport">Transport</option>
-                <option value="Food">Food</option>
-                <option value="Shopping">Shopping</option>
-                <option value="Rent">Rent</option>
-                <option value="Petrol">Petrol</option>
-                <option value="Medicine">Medicine</option>
-                <option value="Entertainment">Entertainment</option>
-            </select>
+                    <option value="General">General</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Food">Food</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Rent">Rent</option>
+                    <option value="Petrol">Petrol</option>
+                    <option value="Medicine">Medicine</option>
+                    <option value="Entertainment">Entertainment</option>
+                </select>
             </div>
-            <button type="submit" class="btn" style="background-color:#98DFD6; font-size: 100%; margin-top:10%;">Submit</button>
+            <button type="submit" class="btn" style="background-color:#98DFD6; font-size: 100%;">Submit</button>
         </form>
     </div>
 
