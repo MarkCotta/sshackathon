@@ -111,7 +111,7 @@
                             </div>
                             <br><br><br>
                             <div class="panel-footer">
-                                <center> Don't have an account? <a href="login.php" style="color:#00235B">Register here</a></center>
+                                <center> Don't have an account? <a href="register.php" style="color:#00235B">Register here</a></center>
                             </div>     
                         </div>
                     </div>

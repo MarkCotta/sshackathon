@@ -192,7 +192,7 @@ if (!isset($_SESSION['user_name']))
                         </h1>
                     </div>
                     <div class=" col-md-4">
-                        <a href="addtran.php"><button class="btn" style="display:block; background-color: #FFDD83">
+                        <a href="addtran.php" style="text-decoration: none;"><button class="btn" style="display:block; background-color: #FFDD83">
                                 Add Transaction
                             </button></a>
                     </div>
@@ -215,7 +215,7 @@ if (!isset($_SESSION['user_name']))
             </div>
 
             <div class="container " style="width:100%; border-radius:40px; margin-left: auto; margin-right: auto; padding: 5% 14%;">
-                <a href="addbudget.php">
+                <a href="addbudget.php" style="text-decoration: none;">
                     <button class="btn" style="display:block; width: 100%; background-color: #FFBFA9">
                         Add Budget
                     </button>
