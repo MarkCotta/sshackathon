@@ -57,7 +57,7 @@ if (!isset($_SESSION['user_name']))
 
             </div>
             <div class="mb-3">
-                <label for="amount" class="form-label">Email address</label>
+                <label for="amount" class="form-label">Amount</label>
                 <input type="number" placeholder="Amount" id="amount" name="amount" min=1>
             </div>
             <div class="mb-3">
